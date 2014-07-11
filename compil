@@ -1,0 +1,27 @@
+#!/bin/bash
+
+if [ $1 = "bib" ]; then
+    pdflatex rapport.tex
+    bibtex rapport
+    pdflatex rapport.tex
+    pdflatex rapport.tex
+fi
+
+if [ $1 = "clean" ]; then
+    rm *.aux
+    rm *.bak
+    rm *.bbl
+    rm *.blg
+    rm *.lof
+    rm *.log
+    rm *.lot
+    rm *.out
+    rm *.toc
+fi
+
+if [ $1 = "Clean" ]; then
+    ./compil clean
+    rm *.pdf
+fi
+
+
