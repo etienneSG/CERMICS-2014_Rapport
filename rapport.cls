@@ -65,6 +65,13 @@
 %Un poil plus pratique
 \newcommand\institute[1]{\large \textbf{#1}}
 
+%On définit l'envirronnement propre au théorème
+\newtheorem{thm}{Théorème}
+\newtheorem{lem}[thm]{Lemme}
+\newtheorem{prop}{Proposition}[section]
+
+\newcommand\RR{\mathbb{R}}
+
 %On rédéfinit les chapitres
 \usepackage{titlesec}
 \titleformat{\chapter}[display]
@@ -73,7 +80,7 @@
 \titleformat{\section}
   {\normalfont\large\bfseries}
   {\thesection}{1em}{}
-  \titleformat{\subsection}
-  {\normalfont}
-  {\thesection}{1em}{}
+\titleformat{\subsection}
+  {\normalfont\bfseries}
+  {\thesubsection}{1em}{}
 \titlespacing*{\thechapter}{0pt}{0pt}{0pt}

@@ -59,23 +59,23 @@
 
 \begin{itemize}
 \item Type de stage : stage scientifique
-\\
+  \\
 \item Année académique : 2013/2014
-\\
+  \\
 \item Auteur : Etienne de \textsc{Saint Germain}
-\\
+  \\
 \item Formation : 2ème année
-\\
+  \\
 \item Titre du rapport : Complexité du problème de régulation des systèmes de vélo en libre-service sur un ring
-\\
+  \\
 \item Organisme d’accueil : CERMICS
-\\
+  \\
 \item Pays d’accueil : France
-\\
+  \\
 \item Maître de stage : M. Frédéric Meunier
-\\
+  \\
 \item Mots-clés caractérisant votre rapport (4 à 5 mots maximum) : compléxité, graphe, régulation
-\\
+  \\
 \item Thème École : Mathématiques
 \end{itemize}
 
@@ -96,211 +96,88 @@ La même chose mais en anglais\\
 \\
 \textbf{Keywords :} how, to, write, bullshit
 
-\chapter*{Synthèse}
-\addcontentsline{toc}{chapter}{Synthèse}
-Environ 8 pages à écrire en francais si le rapport est en anglais
-
 % Ces noms ne sont pas automatiques, les changer manuellement si vous passez en anglais.
 \tableofcontents
 \addcontentsline{toc}{chapter}{Table des matières}
-\listoftables
-\addcontentsline{toc}{chapter}{Liste des tableaux}
 \listoffigures
 \addcontentsline{toc}{chapter}{Liste des figures}
 
-% Bien sûr à supprimer après, là c'est juste pour tester la feuille de style et montrer ce qui est possible :)
-\part{Exemple de bullshit}
-\chapter{Ceci est un chapitre}
-\section{Exemple de section}
-Faites semblant de dire des trucs (oupah). Pour faire un retour à la ligne on utilise \textbackslash\textbackslash. Exemple\\
-Truc en \textit{italique}\\
-Truc en \textbf{gras}\\
-Bref il existe plein de trucs checkez \href{http://fr.wikibooks.org/wiki/LaTeX/G\%C3\%A9n\%C3\%A9ralit\%C3\%A9s}{ce tuto... lien cliquable}\\
-  Bien sûr la table des matières/des tableaux/des figures se remplit automatiquement, c'est juste magique\\
+\chapter*{Organisme d'accueil}
+\addcontentsline{toc}{chapter}{Organisme d'accueil}
 
-  \section{Tableaux}
-  Pour voir comment faire un tableau voir au dessus la table des thèmes qui est un exemple simple ou la table ci-dessous (~\ref{randomtable}) plus compliquée (ou regardez le tuto)\\
+Vous devez présenter l’organisme qui vous accueille : le lieu et le contexte du stage, le type d’organisme (laboratoire public, entreprise en France, à l’étranger), sa structure, ses activités et ses ressources. Vous devez également présenter votre maître de stage dans le cadre de ses fonctions et des travaux de recherche qu’il mène.
 
-  \begin{table}[h]
-    \caption{\label{randomtable} Random table}
-    \centering
-    \begin{tabular}{llr}
-      \toprule
-      \multicolumn{2}{c}{Name} \\
-      \cmidrule(r){1-2}
-      First name & Last Name & Grade \\
-      \midrule
-      John & Doe & $7.5$ \\
-      Richard & Miles & $2$ \\
-      \bottomrule
-    \end{tabular}
-  \end{table}
+\part{Rapport}
 
-  \section{Listes}
-  On peut faire ça\\
+\chapter{Introduction}
 
-  \begin{itemize}
-  \item First item in a list 
-  \item Second item in a list 
-  \item Third item in a list
-  \end{itemize}
+\section{Motivations et modèle}
 
-  Ou ça\\
+\subsection{Motivations et résultats précédents}
+Ce stage s'inscrit dans l'étude des moyens de transport en libre service tel \emph{Vélib'} ou \emph{Autolib'} à Paris. Le principe est le suivant : un utilisateur prend un véhicule dans n'importe quelle station et se déplace jusqu'à une n'importe quelle station où il dépose son véhicule. Un des problèmes auquel est confronté ce service est le taux de foisonnement, c'est-à-dire le fait que chaque station doit garder un bon équilibre entre le nombre de places et le nombre de véhicule dans chaque station. L'étude de ce rééquilibrage sous certaines hypothèse est l'objet de ce stage.
+\\
 
-  \begin{description}
-  \item[First] This is the first item
-  \item[Last] This is the last item
-  \end{description}
+Dans l'article \cite{Benchimol2011}, les auteurs ont introduit une version du \emph{C-delivery TSP}\footnote{littéralement, problème du voyageur de commerce avec livraison et une capacité de transport égale à \it{C}} défini par Chalasani et Motwani. Le \emph{Static Stations Balancing Problem} abrégé SSBP est un 
 
-  \section{Test des formules de maths et chimie}
-  Bon là je peux pas tout vous dire, faut checker le tuto pour voir tout ce qui est possible.\\
-  Et pour ceux qui se le demandent oui je met de la chimie car je pense que certains devront en utiliser.\\
+\subsection{Notations et outils}
 
-  \begin{center}\ce{2 Mg + O2 -> 2 MgO}\end{center}
-  Because of this reaction, the required ratio is the atomic weight of magnesium: \SI{16.00}{\gram} of oxygen as experimental mass of Mg: experimental mass of oxygen or $\frac{x}{1.31}=\frac{16}{0.87}$ from which, $M_{\ce{Mg}} = 16.00 \times \frac{1.31}{0.87} = 24.1 = \SI{24}{\gram\per\mole}$ (to two significant figures).
+\subsection{Modèle}
 
-  \begin{align}
-    A = 
-    \begin{bmatrix}
-      A_{11} & A_{21} \\
-      A_{21} & A_{22}
-    \end{bmatrix}
-  \end{align}
+\textbf{Données :} Un graphe $G=(V,E)$, une fonction de coût $\bf{c} \in \RR^E_+$, une capacité $C$ et deux états $i=(\bf{x},p)$ (état initial) et $t=(\bf{y},q)$ (état cible).
 
-  \begin{enumerate}
-    \begin{item}
-      The \emph{atomic weight of an element} is the relative weight of one of its atoms compared to C-12 with a weight of 12.0000000$\ldots$, hydrogen with a weight of 1.008, to oxygen with a weight of 16.00. Atomic weight is also the average weight of all the atoms of that element as they occur in nature.
-    \end{item}
+\textbf{Tâche :} Trouver le coût minimal de la séquence de mouvements permettant d'aller de l'état $i$ à l'état $t$ et le premier mouvement d'une telle séquence.
 
-    \begin{item}
-      The \emph{units of atomic weight} are two-fold, with an identical numerical value. They are g/mole of atoms (or just g/mol) or amu/atom.
-    \end{item}
-    
-    \begin{item}
-      \emph{Percentage discrepancy} between an accepted (literature) value and an experimental value is
-      \begin{equation*}
-        \frac{\mathrm{experimental\;result} - \mathrm{accepted\;result}}{\mathrm{accepted\;result}}
-      \end{equation*}
-    \end{item}
-  \end{enumerate}
+\section{Résultats}
 
-  \begin{equation}
-    L' = {L}{\sqrt{1-\frac{v^2}{c^2}}}
-  \end{equation}
-  
-  \begin{subequations}
-    Maxwell's equations:
-    \begin{align}
-      B'&=-\nabla \times E,\\
-      E'&=\nabla \times B - 4\pi j,
-    \end{align}
-  \end{subequations}
+\chapter{Résultats préliminaires dans un graphe circulaire à \emph{n} sommets}
 
-  \[
-  \lim_{x\to 0}{\frac{e^x-1}{2x}}
-  \overset{\left[\frac{0}{0}\right]}{\underset{\mathrm{H}}{=}}
-  \lim_{x\to 0}{\frac{e^x}{2}}={\frac{1}{2}}
-  \]
+\chapter{Cas du triangle}
 
-  \[
-  a =
-  \begin{cases}
-    \int x\, \mathrm{d} x\\
-    b^2
-  \end{cases}
-  \]
+\section{Rappel des notations et des hypothèses}
+
+\textbf{*Insérer une figure du graphe triangulaire*}
 
 
-  \begin{align*}
-    f(x) &= (x+a)(x+b) \\
-    &= x^2 + (a+b)x + ab
-  \end{align*}
+\section{Algorithme d'obtention de la solution optimale}
 
+\begin{thm}
+\emph{Optimalité de l'algorithme précédent}
 
-  \[
-  f(x) = \begin{cases}
-    x  & when $x$ is even\\
-    -x & when $x$ is odd
-  \end{cases}
-  \]
+L'algorithme précédent donne le premier mouvement d'une solution optimale et le coût de cette solution est donnée par :
 
-  \section{Code}
-  Ici un exemple de code
-  \lstset{language=Pascal}
-  \begin{lstlisting}[frame=single]
-    for i:=maxint to 0 do
-    begin
-    { do nothing }
-    end;
-  \end{lstlisting}
+$$\sum_{v \in V}\xi_v(p,q,\bf{x},\bf{y})$$
+\end{thm}
 
-  \section{Figures}
-  Pour insérer une figure on fait comme ceci.\\
-  \begin{figure}[h]
-    \begin{center}
-      \includegraphics[scale=0.5]{logo_enpc.jpg} % Include the image placeholder.png
-      \caption{\label{logo} Logo de l'ENPC}
-    \end{center}
-  \end{figure}
+\section{Preuve de l'algorithme précédent}
 
-  Le fichier doit se trouver dans le dossier image.
-  On peut faire un référence à la figure:\\
-  Voir le logo de l'ENPC ~\ref{logo} page~\pageref{logo}
+\chapter{Capacité du camion infinie}
 
-  \section{Bibliographie}
-  Quand vous modifiez la biblio, il faut la regénérer avec votre éditeur. Voir \url{http://fr.wikibooks.org/wiki/LaTeX/Structuration_du_texte#Bibliographie}.
-  Voir le fichier externe rapport.bib pour modifier la biblio. Exemple de citation: Ainsi, Jules \bsc{Verne} faisait dire à Wassili Fédor \cite{Verne1875}: Miam c'est bon les chips.
+\chapter{Capacité du camion unitaire}
 
-  \chapter{Ceci est un autre chapitre}
-  BEWARE HEAVY BULLSHIT HERE\\
+\chapter{Questions ouvertes}
 
-  \part{Rapport}
-  % Ceci est le modèle de plan suggéré par l'école, je ne fais que recopier leur truc
-  \chapter{Organisme d'accueil}
-  Vous devez présenter l’organisme qui vous accueille : le lieu et le contexte du stage, le type d’organisme (laboratoire public, entreprise en France, à l’étranger), sa structure, ses activités et ses ressources. Vous devez également présenter votre maître de stage dans le cadre de ses fonctions et des travaux de recherche qu’il mène.
+\chapter*{Bilan personnel}
+\addcontentsline{toc}{chapter}{Bilan personnel}
+Il est important de souligner vos acquis personnels et professionnels durant le stage et de  dresser un bilan de cette expérience scientifique, humaine et linguistique le cas échéant. Expliquez quelle peut être l’influence de ce stage sur la poursuite de vos études et de votre projet professionnel.
 
-  \chapter{Introduction}
-  L’introduction se rédige lorsque l’on a un plan détaillé en tête. Elle définit le sujet et annonce le plan.
-  Vous devez décrire de façon assez informelle le sujet, les raisons qui peuvent pousser à s’y intéresser, le contexte dans le quel il est abordé et ses enjeux.
+% Inclure ici ceux qui n'ont pas été cités dans le document
+\nocite{Merchet2007}
+\nocite{Goossens1993}
+\nocite{Greenwade1993}
 
-  \chapter{Présentation du probème}
-  Vous devez décrire précisément le problème, ce que vous cherchez à résoudre. La description du problème doit contenir les éléments qui permettront de dire si le problème a été résolu.
+\bibliographystyle{siam}
+\bibliography{rapport}
+\addcontentsline{toc}{chapter}{Bibliographie}
 
-  \chapter{Revue de la littérature}
-  Vous devez présenter certains travaux ayant porté sur ce problème ou sur des problèmes proches.
+\backmatter
 
+\appendix
+\part{Annexes}
+\chapter{Annexe 1}
+Ecrire ici
 
-  \chapter{Méthode}
-  Vous devez décrire ici la méthodologie employée pour résoudre votre problème. 
+\chapter{Annexe 2}
+Ou là
 
-
-  \chapter{Résultats}
-  Vous devez décrire le protocole expérimental, les conditions d’expériences, les résultats obtenus et la qualité de ces résultats.
-
-  \chapter{Retour d'expérience}
-  C’est l’occasion de rendre compte du travail fourni, d’aborder les questions que vous vous êtes posées et les réponses que vous y avez apportées, de mentionner les difficultés rencontrées, les tentatives infructueuses. Prenez du recul, soumettez vos résultats à la critique. Expliquez dans quelle mesure votre travail sera utilisé et ouvrez des perspectives sur des suites possibles.
-
-  \chapter{Bilan personnel}
-  Il est important de souligner vos acquis personnels et professionnels durant le stage et de  dresser un bilan de cette expérience scientifique, humaine et linguistique le cas échéant. Expliquez quelle peut être l’influence de ce stage sur la poursuite de vos études et de votre projet professionnel.
-
-  \backmatter
-
-  \appendix
-  \part{Annexes}
-  \chapter{Annexe 1}
-  Ecrire ici
-
-  \chapter{Annexe 2}
-  Ou là
-
-  \part{Bibliographie}
-
-  % Inclure ici ceux qui n'ont pas été cités dans le document
-  \nocite{Merchet2007}
-  \nocite{Goossens1993}
-  \nocite{Greenwade1993}
-
-  \bibliographystyle{siam}
-  \bibliography{rapport}
 
 \end{document}
