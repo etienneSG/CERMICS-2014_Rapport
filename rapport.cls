@@ -12,6 +12,7 @@
 %On rectifie les marges pour centrer le document
 \usepackage{geometry}
 \geometry{bindingoffset=1.5cm}
+\geometry{top=3cm, bottom=3cm, left=1.2cm , right=2.5cm}
 
 %Pour remplir de bullshit
 \usepackage{lipsum}
