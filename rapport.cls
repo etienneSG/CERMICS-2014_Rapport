@@ -12,13 +12,16 @@
 %On rectifie les marges pour centrer le document
 \usepackage{geometry}
 \geometry{bindingoffset=1.5cm}
-\geometry{top=3cm, bottom=3cm, left=1.2cm , right=2.5cm}
+\geometry{top=3.5cm, bottom=3cm, left=1.2cm , right=2.5cm}
 
 %Pour remplir de bullshit
 \usepackage{lipsum}
 
 %Pour pouvoir mettre des images
 \usepackage{graphicx}
+
+%Pour pouvoir modifier les énumérations
+\usepackage{enumitem}
 
 %Pour mettre des liens dans le fichier
 \usepackage[xetex,colorlinks=true,pdfmenubar=false,pdfpagemode=UseNone,urlcolor=black,linkcolor=black,citecolor=black,filecolor=black,pdfstartview=FitH]{hyperref}
@@ -71,7 +74,10 @@
 \newtheorem{lem}[thm]{Lemme}
 \newtheorem{prop}{Proposition}[section]
 
-\newcommand\RR{\mathbb{R}}
+%Raccourcis utile
+\newcommand\RR{\mathbb{R}}         %R de l'ensemble des réels
+\newcommand\ZZ{\mathbb{Z}}         %Z de l'ensemble des relatifs
+\newcommand\bs[1]{\boldsymbol{#1}} %Symbole en gras dans une formule mathématique
 
 %On rédéfinit les chapitres
 \usepackage{titlesec}
