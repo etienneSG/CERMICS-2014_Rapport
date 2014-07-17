@@ -25,7 +25,7 @@
     \institute{CERMICS}
     
     \vspace{0.7cm}
-    2013\\
+    2014\\
     Rapport de stage scientifique
     
     \vspace{0.3cm}
@@ -150,9 +150,10 @@ Dans notre étude, le problème consiste à aller d'un état initial $i=(\bs{x},
 Nous dirons qu'un sommet $v$ (ou une station) est \emph{en excès} (resp. \emph{en défault}) si $x_v > y_v$ (resp. $x_v < y_v$). Une station sera dite \emph{équilibrée} si $x_v=y_v$. L'ensemble des stations équlibrées sera noté $B(\bs{x},\bs{y})$.
 \\
 La même notion peut être étendue à un sous-ensemble de sommets : $U \subseteq V$ est dit en excès (resp. en défault, équilibré) si $x(U) > y(U)$ (resp. $x(U) < y(U)$, $x(U) = y(U)$).
-\\
 
-Dans l'ensemble de cette étude, nous supposerons également que $x(V) = y(V)$ sinon le problème n'a pas de solutions.
+Pour une séquence de mouvements, pour chaque arrête $e \in E$, on notera $z_e$ la variable ``comptant'' le nombre de fois où le camion est passée par l'arrête $e$.
+
+Dans l'ensemble de cette étude, nous supposerons également que $x(V) = y(V)$ sinon le problème n'a pas de solutions. En outre, nous supposerons toujours que le graphe possède au moins 3 sommets.
 \\
 
 Le problème introduit par les auteurs de l'article \cite{Benchimol2011} s'exprime de la manière qui suit.
@@ -163,9 +164,29 @@ Le problème introduit par les auteurs de l'article \cite{Benchimol2011} s'expri
 
 \section{Résultats}
 
-La section \ref{Cas du Triangle} présente un algorithme permettant d'obtenir une solution optimale en distinguant au plus sept cas dans le cas du triangle ainsi qu'une preuve de l'optimalité de la solution retournée par l'agorithme.
+La section \ref{Résultats préliminaires} présentent les hypothèses de travails et quelques résultats préliminaires sur les graphes circulaires à \emph{n} sommets. La section \ref{Cas du Triangle} présente un algorithme permettant d'obtenir une solution optimale en distinguant au plus sept cas dans le cas du triangle ainsi qu'une preuve de l'optimalité de la solution retournée par l'agorithme.
 
-\chapter{Résultats préliminaires dans un graphe circulaire à \emph{n} sommets}
+\chapter{Résultats préliminaires dans un graphe circulaire à \textit{n} sommets}
+\label{Résultats préliminaires}
+
+\section{Inégalité ``triangulaire'' sur les coûts des arrêtes}
+
+On se donne un graphe $G=(V,E)$ circulaire à $n$ sommets et un coût $\bs{c} \in \RR^E_+$. On peut alors faire l'hypothèse suivante :
+\begin{gather}\label{Inégalité Triangulaire}
+  c_{e'}<\sum_{e \in E \backslash \{e'\}} c_e \quad , \quad \text{pour tout } e' \in E
+\end{gather}
+
+En effet, supposons qu'il existe $e' \in E$ tel que $c_{e'} \ge \sum_{e \in E \backslash \{e'\}} c_e$ $(*)$.
+
+On se donne une solution optimale $(z_e)_{e \in E}$. On note $P = \sum_{e _in E} c_ez_e$ le coût d'une telle solution. On construit alors la séquence de mouvement $(z'_e)_{e \in E}$ par le procédé suivant : chaque passage par l'arrête $e'$ est remplacé par un passage sur les autres arrêtes avec le même nombre de vélos. Autrement dit, ``on fait le tour dans l'autre sens''. On note $P'$ le coût d'une telle séquence. On a alors :
+\begin{align*}
+  P' &= \sum_{e \in E \backslash \{e'\}} c_e (z_e + z_{e'}) = \sum_{e \in E \backslash \{e'\}} c_ez_e + \left(\sum_{e \in E \backslash \{e'\}} c_{e}\right)z_{e'} \\
+     &\le \sum_{e \in E \backslash \{e'\}} c_ez_e + c_{e'}z_{e'} = P
+\end{align*}
+
+Si l'inégalité $(*)$ est stricte, alors nécessairement $z_e = 0$ (sinon, on contredit l'optimalité de la solution), et dans ce cas, nous sommes ramené au cas de la ligne qui est polynomial.
+
+Si l'inégalité $(*)$ est une égalité, alors les deux séquences sont équivalents et dans ce cas, nous pouvons traiter le problème comme le cas de la ligne.
 
 \section{Borne inférieure de la solution optimale (valable pour un graphe quelconque)}
 \label{Borne inf générale}
@@ -181,12 +202,12 @@ Une borne inféieure du SSBP est la solution optimale du programme linéaire en 
 \[
 \mu(p,q,U,\bs{x},\bs{y}) = \left\{
 \begin{array}{ll}
-  0 &\text{ si } p,q \in U \text{ et } \bar{U} \subseteq B(\bs{x},\bs{y})\\
-  0 &\text{ si } p,q \in \bar{U} \text{ et } U \subseteq B(\bs{x},\bs{y})\\
-  1 &\text{ si } p \in U \text{ et } q \in \bar{U}\\
-  1 &\text{ si } p \in \bar{U} \text{ et } q \in U\\
-  2 &\text{ si } p,q \in U \text{ et } \bar{U} \backslash B(\bs{x},\bs{y}) \ne \emptyset\\
-  2 &\text{ si } p,q \in \bar{U} \text{ et } U \backslash B(\bs{x},\bs{y}) \ne \emptyset
+  0 &\mbox{ si } p,q \in U       \mbox{ et } \bar{U} \subseteq B(\bs{x},\bs{y})\\
+  0 &\mbox{ si } p,q \in \bar{U} \mbox{ et } U \subseteq B(\bs{x},\bs{y})\\
+  1 &\mbox{ si } p \in U         \mbox{ et } q \in \bar{U}\\
+  1 &\mbox{ si } p \in \bar{U}   \mbox{ et } q \in U\\
+  2 &\mbox{ si } p,q \in U       \mbox{ et } \bar{U} \backslash B(\bs{x},\bs{y}) \ne \emptyset\\
+  2 &\mbox{ si } p,q \in \bar{U} \mbox{ et } U \backslash B(\bs{x},\bs{y}) \ne \emptyset
 \end{array}
 \right.
 \]
@@ -194,10 +215,10 @@ Une borne inféieure du SSBP est la solution optimale du programme linéaire en 
 \[
 \nu(p,q,U) = \left\{
 \begin{array}{ll}
-  -1 &\text{ si } p \in U \text{ et } q \in \bar{U}\\
-  0  &\text{ si } p \in U \text{ et } q \in U\\
-  0  &\text{ si } p \in \bar{U} \text{ et } q \in \bar{U}\\
-  +1 &\text{ si } p \in \bar{U} \text{ et } q \in U\\
+  -1 &\mbox{ si } p \in U       \mbox{ et } q \in \bar{U}\\
+  0  &\mbox{ si } p \in U       \mbox{ et } q \in U\\
+  0  &\mbox{ si } p \in \bar{U} \mbox{ et } q \in \bar{U}\\
+  +1 &\mbox{ si } p \in \bar{U} \mbox{ et } q \in U\\
 \end{array}
 \right.
 \]
@@ -206,15 +227,106 @@ Une borne inféieure du SSBP est la solution optimale du programme linéaire en 
 Cette borne inférieure est donc solution du programme linéaire en nombre entier
 \[
 \begin{array}{llll}
-  \text{Min}_{\bs{z}} &\sum_{e \in E} c_ez_e & & \\
-  \text{s.c.}       &z_e \in \ZZ_+ &\text{pour tout } e \in E &\text{(i)} \\
-                    &z(\delta(v)) \text{ est paire} &\text{pour tout } v \in V &\text{(ii)} \\
-                    &z(\delta(U)) \ge \mu(p,q,U,\bs{x},\bs{y}) &\text{pour tout } U \subseteq V, U \ne \emptyset &\text{(iii)} \\
-                    &z(\delta(U)) \ge \mu(p,q,U,\bs{x},\bs{y}) &\text{pour tout } U \subseteq V, U \ne \emptyset &\text{(iii)}
+  \mbox{Min}_{\bs{z}} &\sum_{e \in E} c_ez_e & & \\
+  \mbox{s.c.}       &z_e \in \ZZ_+ &\mbox{pour tout } e \in E &\mbox{(i)} \\
+                    &z(\delta(v)) \mbox{ est paire} &\mbox{pour tout } v \in V &\mbox{(ii)} \\
+                    &z(\delta(U)) \ge \mu(p,q,U,\bs{x},\bs{y}) &\mbox{pour tout } U \subseteq V, U \ne \emptyset &\mbox{(iii)} \\
+                    &z(\delta(U)) \ge \mu(p,q,U,\bs{x},\bs{y}) &\mbox{pour tout } U \subseteq V, U \ne \emptyset &\mbox{(iii)}
 \end{array}
 \]
 
 \section{Un exemple où la borne inférieure n'est pas atteinte}
+
+\textbf{*Insérer une figure du graphe circulaire à 5 sommets*}
+
+\section{Changement de variables}
+
+La description de la borne inférieure dans la section \ref{Borne inf générale} donne un minorant de $z(\delta(U))$ pour toute coupe $\delta(U)$ dans le graphe. Dans le cas de l'arbre décrit dans l'article \cite{Benchimol2011}, on avait donc un minorant de $z_e$ pour tout $e \in E$. Comme $c_e$ est positif pour tout $e\in E$, il suffisait de montrer que le minimum de $z_e$ était atteint pour tout $e \in E$ pour montrer que le coût $\sum_{e _in E}c_ez_e$ était minimal.
+
+\begin{prop}\label{Parité coupe}
+Soit $G=(V,E)$ un graphe dont tous les sommets sont de degrès paire. Alors toute coupe de G est de cardinal paire.
+\end{prop}
+
+Dans le cas d'un graphe circulaire, tous les sommets sont de degrès deux. Par conséquent, selon la proposition \ref{Parité coupe}\footnote{Trouver un lien vers la démonstration ou la mettre en annexe.}, les bornes inférieures des variables $(z_e)_{e \in E}$ ne sont connues que pour des ensembles paires d'arrêtes. En supposant connue la valeur de $z(\delta(U))$ pour tout $U \subseteq V$, peut-on retrouver la valeur de $z_e$ pour tout $e \in E$ ?
+
+\begin{lem}\label{Changement de base}
+Soit $G=(V,E)$ un graphe circulaire à \emph{n} sommets. ($n \ge 3$)
+On considère le système linéaire suivant d'inconnues $(z_e)_{e \in E}$ :
+\begin{gather}\label{Système linéaire complet}
+  \sum_{e \in \delta(U)}z_e = z(\delta(U)) \quad , \quad \mbox{pour tout } U \subseteq V \mbox{ tel que } U \ne \emptyset
+\end{gather}
+On suppose que le système \ref{Système linéaire complet} possède au moins une solution.
+
+Alors cette solution est unique.
+\end{lem}
+
+La preuve de ce lemme est constructive. Il suffit d'extraire le sous-système suivant :
+\begin{gather}\label{Système linéaire extrait}
+  \left(
+  \begin{array}{cccccc}
+    1 & 0   & 1 & 0      & \cdots & 0 \\
+    1 & 1   &   &        &        &   \\
+      & 1   & 1 &        & (0)    &   \\
+      &     & 1 & 1      &        &   \\
+      & (0) &   & \ddots & \ddots &   \\
+      &     &   &        & 1      & 1
+  \end{array} \right)
+  \left(
+  \begin{array}{c}
+    z_1 \\
+    z_2 \\
+    z_3 \\
+    z_4 \\
+    \vdots \\
+    z_n
+  \end{array} \right)
+  =
+  \left(
+  \begin{array}{c}
+    \zeta_1 \\
+    \zeta_2 \\
+    \zeta_3 \\
+    \zeta_4 \\
+    \vdots  \\
+    \zeta_n
+  \end{array} \right)
+\end{gather}
+
+On note $M_n$ la matrice du sytème \ref{Système linéaire extrait}. En développant par rapport à la première ligne, on obtient :
+\begin{gather*}
+  \mbox{det }M_n =
+  1 \times \mbox{det } \left(
+  \begin{array}{ccccc}
+    1 &                                         &        &        &   \\
+    1 & \ddots                                  &        & (0)    &   \\
+      & \ddots                                  & \ddots &        &   \\
+    \multicolumn{2}{c}{\multirow{2}{*}{ (0) }}  & \ddots & \ddots &   \\
+    \multicolumn{2}{c}{}                        &        & 1      & 1
+  \end{array} \right)
+  + 1 \times \mbox{det } \left(
+  \begin{array}{cc|cccc}
+    1 & 0                                       & \multicolumn{4}{c}{\multirow{2}{*}{ (0) }} \\
+    1 & 1                                       & \multicolumn{4}{c}{}                       \\
+    \hline
+    \multicolumn{2}{c|}{\multirow{5}{*}{ (0) }} & 1   &        & \multicolumn{2}{c}{\multirow{2}{*}{ (0) }} \\
+    \multicolumn{2}{c|}{}                       & 1   & \ddots & \multicolumn{2}{c}{}                       \\
+    \multicolumn{2}{c|}{}                       &     & \ddots & \ddots &                                   \\
+    \multicolumn{2}{c|}{}                       & (0) &        & 1      & 1
+  \end{array} \right)
+  = 2
+\end{gather*}
+Donc le système \ref{Système linéaire extrait} possède une unique solution.
+\\
+
+On peut donner une forme explicite de la solution :
+\begin{equation}
+  \left\{
+  \begin{aligned}\notag
+    z_1 &= \frac{1}{2}\left(\zeta_1 + \zeta_2 - \zeta_3\right) \\
+    z_p &= (-1)^{p-1} z_1 + \sum_{i=2}^p (-1)^{p-i}\zeta_i \quad , \quad \mbox{pour tout } p \in \{2,..,n\}
+  \end{aligned}
+  \right.
+\end{equation}
 
 \chapter{Cas du triangle}
 \label{Cas du Triangle}

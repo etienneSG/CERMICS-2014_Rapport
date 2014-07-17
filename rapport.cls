@@ -44,6 +44,7 @@
 
 %Pour les tableaux
 \usepackage{array} %Centrer les tableaux
+\usepackage{multirow} %multiligne et multicolonne
 \usepackage[hang, small,labelfont=bf,up,textfont=it,up]{caption} %Nom des tables personnalisés
 \usepackage{booktabs} %Tables avec des lignes marquées
 
