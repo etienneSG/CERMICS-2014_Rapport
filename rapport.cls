@@ -22,6 +22,7 @@
 
 %Pour pouvoir modifier les énumérations
 \usepackage{enumitem}
+\usepackage[ampersand]{easylist}
 
 %Pour mettre des liens dans le fichier
 \usepackage[xetex,colorlinks=true,pdfmenubar=false,pdfpagemode=UseNone,urlcolor=black,linkcolor=black,citecolor=black,filecolor=black,pdfstartview=FitH]{hyperref}

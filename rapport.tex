@@ -164,16 +164,17 @@ Le problème introduit par les auteurs de l'article \cite{Benchimol2011} s'expri
 
 \section{Résultats}
 
-La section \ref{Résultats préliminaires} présentent les hypothèses de travails et quelques résultats préliminaires sur les graphes circulaires à \emph{n} sommets. La section \ref{Cas du Triangle} présente un algorithme permettant d'obtenir une solution optimale en distinguant au plus sept cas dans le cas du triangle ainsi qu'une preuve de l'optimalité de la solution retournée par l'agorithme.
+La section \ref{Résultats préliminaires} présentent les hypothèses de travails et quelques résultats préliminaires sur les graphes circulaires à \emph{n} sommets. La section \ref{Cas du Triangle} présente un algorithme permettant d'obtenir une solution optimale avec au plus cinq disjonction de cas dans le cas du triangle ainsi qu'une preuve de l'optimalité de la solution retournée par l'agorithme.
 
 \chapter{Résultats préliminaires dans un graphe circulaire à \textit{n} sommets}
 \label{Résultats préliminaires}
 
 \section{Inégalité ``triangulaire'' sur les coûts des arrêtes}
+\label{sec: Inégalité triangulaire}
 
 On se donne un graphe $G=(V,E)$ circulaire à $n$ sommets et un coût $\bs{c} \in \RR^E_+$. On peut alors faire l'hypothèse suivante :
 \begin{gather}\label{Inégalité Triangulaire}
-  c_{e'}<\sum_{e \in E \backslash \{e'\}} c_e \quad , \quad \text{pour tout } e' \in E
+  c_{e'}<\sum_{e \in E \backslash \{e'\}} c_e \quad \text{pour tout } e' \in E
 \end{gather}
 
 En effet, supposons qu'il existe $e' \in E$ tel que $c_{e'} \ge \sum_{e \in E \backslash \{e'\}} c_e$ $(*)$.
@@ -198,27 +199,27 @@ Une borne inféieure du SSBP est la solution optimale du programme linéaire en 
 \begin{enumerate}[label=(\roman*)]
 \item les variables sont des entiers naturels.
 \item la condition d'Euleur : sauf peut-être en $p$ et en $q$, le camion entre et sort un nombre paire de fois.
-\item ``subtour elimination'' : si le camion est en $p \in U \subseteq V $ et qu'il existe des stations non-équilibrée dans $\bar{U}$, alors le camion doit nécessairement traverser $\delta(U)$ au moins une fois (voire plus suivant la position de $q$). Nous utiliserons la notation suivante pour écrire cette contrainte :
+\item ``subtour elimination'' : si le camion est en $p \in U \subseteq V $ et qu'il existe des stations non-équilibrée dans $\overline{U}$, alors le camion doit nécessairement traverser $\delta(U)$ au moins une fois (voire plus suivant la position de $q$). Nous utiliserons la notation suivante pour écrire cette contrainte :
 \[
 \mu(p,q,U,\bs{x},\bs{y}) = \left\{
 \begin{array}{ll}
-  0 &\mbox{ si } p,q \in U       \mbox{ et } \bar{U} \subseteq B(\bs{x},\bs{y})\\
-  0 &\mbox{ si } p,q \in \bar{U} \mbox{ et } U \subseteq B(\bs{x},\bs{y})\\
-  1 &\mbox{ si } p \in U         \mbox{ et } q \in \bar{U}\\
-  1 &\mbox{ si } p \in \bar{U}   \mbox{ et } q \in U\\
-  2 &\mbox{ si } p,q \in U       \mbox{ et } \bar{U} \backslash B(\bs{x},\bs{y}) \ne \emptyset\\
-  2 &\mbox{ si } p,q \in \bar{U} \mbox{ et } U \backslash B(\bs{x},\bs{y}) \ne \emptyset
+  0 &\mbox{ si } p,q \in U            \mbox{ et } \overline{U} \subseteq B(\bs{x},\bs{y})\\
+  0 &\mbox{ si } p,q \in \overline{U} \mbox{ et } U \subseteq B(\bs{x},\bs{y})\\
+  1 &\mbox{ si } p \in U              \mbox{ et } q \in \overline{U}\\
+  1 &\mbox{ si } p \in \overline{U}   \mbox{ et } q \in U\\
+  2 &\mbox{ si } p,q \in U            \mbox{ et } \overline{U} \backslash B(\bs{x},\bs{y}) \ne \emptyset\\
+  2 &\mbox{ si } p,q \in \overline{U} \mbox{ et } U \backslash B(\bs{x},\bs{y}) \ne \emptyset
 \end{array}
 \right.
 \]
 \item Contrainte de capacité : si $U \subseteq V$ a trop de vélos, le camion doit quitter suffisament de fois $U$ afin de sortir tous ces vélo. Une notation utile est la suivante :
 \[
-\nu(p,q,U) = \left\{
+\eta(p,q,U) = \left\{
 \begin{array}{ll}
-  -1 &\mbox{ si } p \in U       \mbox{ et } q \in \bar{U}\\
-  0  &\mbox{ si } p \in U       \mbox{ et } q \in U\\
-  0  &\mbox{ si } p \in \bar{U} \mbox{ et } q \in \bar{U}\\
-  +1 &\mbox{ si } p \in \bar{U} \mbox{ et } q \in U\\
+  -1 &\mbox{ si } p \in U            \mbox{ et } q \in \overline{U}\\
+  0  &\mbox{ si } p \in U            \mbox{ et } q \in U\\
+  0  &\mbox{ si } p \in \overline{U} \mbox{ et } q \in \overline{U}\\
+  +1 &\mbox{ si } p \in \overline{U} \mbox{ et } q \in U\\
 \end{array}
 \right.
 \]
@@ -231,15 +232,19 @@ Cette borne inférieure est donc solution du programme linéaire en nombre entie
   \mbox{s.c.}       &z_e \in \ZZ_+ &\mbox{pour tout } e \in E &\mbox{(i)} \\
                     &z(\delta(v)) \mbox{ est paire} &\mbox{pour tout } v \in V &\mbox{(ii)} \\
                     &z(\delta(U)) \ge \mu(p,q,U,\bs{x},\bs{y}) &\mbox{pour tout } U \subseteq V, U \ne \emptyset &\mbox{(iii)} \\
-                    &z(\delta(U)) \ge \mu(p,q,U,\bs{x},\bs{y}) &\mbox{pour tout } U \subseteq V, U \ne \emptyset &\mbox{(iii)}
+                    &z(\delta(U)) \ge 2 \left\lceil \frac{x(U)-y(U)}{C} \right\rceil\ + \eta(p,q,U) &\mbox{pour tout } U \subseteq V, U \ne \emptyset &\mbox{(iv)}
 \end{array}
 \]
 
 \section{Un exemple où la borne inférieure n'est pas atteinte}
 
-\textbf{*Insérer une figure du graphe circulaire à 5 sommets*}
+\begin{figure}[ht]
+  \label{Exemple de borne inf non atteinte}
+  \caption{Exemple de graphe circulaire à 5 sommets où la borne inférieure n'est pas atteinte}
+\end{figure}
 
 \section{Changement de variables}
+\label{Changement variables}
 
 La description de la borne inférieure dans la section \ref{Borne inf générale} donne un minorant de $z(\delta(U))$ pour toute coupe $\delta(U)$ dans le graphe. Dans le cas de l'arbre décrit dans l'article \cite{Benchimol2011}, on avait donc un minorant de $z_e$ pour tout $e \in E$. Comme $c_e$ est positif pour tout $e\in E$, il suffisait de montrer que le minimum de $z_e$ était atteint pour tout $e \in E$ pour montrer que le coût $\sum_{e _in E}c_ez_e$ était minimal.
 
@@ -253,14 +258,14 @@ Dans le cas d'un graphe circulaire, tous les sommets sont de degrès deux. Par c
 Soit $G=(V,E)$ un graphe circulaire à \emph{n} sommets. ($n \ge 3$)
 On considère le système linéaire suivant d'inconnues $(z_e)_{e \in E}$ :
 \begin{gather}\label{Système linéaire complet}
-  \sum_{e \in \delta(U)}z_e = z(\delta(U)) \quad , \quad \mbox{pour tout } U \subseteq V \mbox{ tel que } U \ne \emptyset
+  \sum_{e \in \delta(U)}z_e = z(\delta(U)) \quad \mbox{pour tout } U \subseteq V \mbox{ tel que } U \ne \emptyset
 \end{gather}
 On suppose que le système \ref{Système linéaire complet} possède au moins une solution.
 
 Alors cette solution est unique.
 \end{lem}
 
-La preuve de ce lemme est constructive. Il suffit d'extraire le sous-système suivant :
+La preuve de ce lemme est constructive. On numérote arbitrairement les arrêtes du graphe. Il suffit d'extraire le sous-système suivant :
 \begin{gather}\label{Système linéaire extrait}
   \left(
   \begin{array}{cccccc}
@@ -328,22 +333,111 @@ On peut donner une forme explicite de la solution :
   \right.
 \end{equation}
 
+On obtient ainsi une nouvelle base $\bs{\zeta} = (\zeta_i)_{i \in \{1,..,n\}}$. Nous verrons tout l'intérêt d'un tel changement de variable dans le cas du triangle (section \ref{Cas du Triangle}) et dans le cas où les arrêtes ont des coûts unitaires (section \ref{}).
+
 \chapter{Cas du triangle}
 \label{Cas du Triangle}
 
 \section{Rappel des notations et des hypothèses}
 
-\textbf{*Insérer une figure du graphe triangulaire*}
+\begin{figure}[ht]
+  \label{Notation graphe triangulaire}
+  \caption{Notations utilisées dans le cas du graphe triangulaire}
+\end{figure}
 
+Le changement de variables décrit en section \ref{Changement variables} s'écrit ici :
+\begin{equation}\notag
+  \left\{
+    \begin{aligned}
+      \zeta_1 &= z_1 + z_3 \\
+      \zeta_2 &= z_1 + z_2 \\
+      \zeta_3 &= z_2 + z_3
+    \end{aligned}
+  \right.
+  \quad \mbox{et} \quad
+  \left(
+    \begin{array}{c}
+      z_1 \\
+      z_2 \\
+      z_3
+    \end{array}
+  \right)
+  = \frac{1}{2}
+  \left(
+    \begin{array}{rrr}
+      1 & 1 & -1 \\
+      -1 & 1 & 1 \\
+      1 & -1 & 1
+    \end{array}
+  \right)
+  \left(
+    \begin{array}{c}
+      \zeta_1 \\
+      \zeta_2 \\
+      \zeta_3
+    \end{array}
+  \right)
+\end{equation}
+En remplaçant dans la fonction objectif, on obtient :
+\begin{equation}\notag
+  \sum_{i=1}^3c_iz_i =
+    \frac{1}{2} \underbrace{ \left(c_1 - c_2 + c_3 \right) }_{>0} \zeta_1
+  + \frac{1}{2} \underbrace{ \left(c_1 + c_2 - c_3 \right) }_{>0} \zeta_2
+  + \frac{1}{2} \underbrace{ \left(-c_1 + c_2 + c_3\right) }_{>0} \zeta_3
+\end{equation}
+Les coefficient des $\zeta_i$ sont positifs à cause de l'hytohèse d'inégalité triangulaire\footnote{cf section \ref{sec: Inégalité triangulaire}}.
+\\
+
+Pour un sommet $v \in V$, on définit $U_v$ par $\{v\}$ si $v$ est en excès ou équilibré et par $\overline{\{v\}}$ sinon. On définit également
+\[
+\zeta_v(p,q,\bs{x},\bs{y}) = \mbox{max} \left( 2 \left\lceil \frac{x(U_v)-y(U_v)}{C} \right\rceil\ + \eta(p,q,U_v), \mu(p,q,U_v,\bs{x},\bs{y} \right)
+\]
 
 \section{Algorithme d'obtention de la solution optimale}
+
+Règles permettant de trouver le premier mouvement d'une solution optimale
+\begin{easylist}[articletoc]
+& Toutes les stations sont équilibrées.
+&& \underline{$p \ne q$}
+
+   Aller de $p$ à $q$.
+&& \underline{$p = q$}
+
+   Ne pas bouger (c'est fini).
+& Il existe une station non-équlibrée.
+&& \underline{$p$ est équilibrée ou en défaut.}
+
+    Aller sur une station en excès sans emporter de vélos.
+&& \underline{$p$ est en excès}
+&&& \underline{$x(p)-y(p) \ge C$.}
+
+    Prendre C vélos et les déposer sur une station en défaut différente de $q$ si possible, sur $q$ sinon.
+&&& \underline{$x(p)-y(p) < C$.}
+
+    Prendre $x(p)-y(p)$ vélos.
+&&&& \underline{Les deux autres stations sont en défaut.}
+
+     Déposer les vélos pris sur une station différentes de $q$.
+&&&& \underline{Une seule autre station est en défaut.}
+
+     On note $r$ la troisième station en excès ou équilibrée\\
+     et $Ex = x(r) - y(r) \pmod{C}$ avec $1 \le Ex \le C$.
+&&&&& \underline{$x(p)-y(p)+Ex > C$.}
+
+      Aller sur la station en défaut et déposer les vélos.
+
+&&&&& \underline{$x(p)-y(p)+Ex \le C$.}
+
+      Aller sur la station en excès et déposer les vélos.
+\end{easylist}
 
 \begin{thm}
 \emph{Optimalité de l'algorithme précédent}
 
 L'algorithme précédent donne le premier mouvement d'une solution optimale et le coût de cette solution est donnée par :
-
-$$\sum_{v \in V}\xi_v(p,q,\bf{x},\bf{y})$$
+\[
+\sum_{v \in V}\xi_v(p,q,\bf{x},\bf{y})
+\]
 \end{thm}
 
 \section{Preuve de l'algorithme précédent}
