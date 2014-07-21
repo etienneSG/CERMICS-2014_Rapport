@@ -46,6 +46,7 @@
 %Pour les tableaux
 \usepackage{array} %Centrer les tableaux
 \usepackage{multirow} %multiligne et multicolonne
+\usepackage{arydshln} %ligne en pointillé
 \usepackage[hang, small,labelfont=bf,up,textfont=it,up]{caption} %Nom des tables personnalisés
 \usepackage{booktabs} %Tables avec des lignes marquées
 
@@ -70,6 +71,9 @@
   
 %Un poil plus pratique
 \newcommand\institute[1]{\large \textbf{#1}}
+
+%Pour que les caractères sous l'accolade soient en taille normale
+\newcommand\displayUB[2]{\underbrace{#1}_{\displaystyle #2}}
 
 %On définit l'envirronnement propre au théorème
 \newtheorem{thm}{Théorème}

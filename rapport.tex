@@ -381,16 +381,16 @@ Le changement de variables décrit en section \ref{Changement variables} s'écri
 En remplaçant dans la fonction objectif, on obtient :
 \begin{equation}\notag
   \sum_{i=1}^3c_iz_i =
-    \frac{1}{2} \underbrace{ \left(c_1 - c_2 + c_3 \right) }_{>0} \zeta_1
-  + \frac{1}{2} \underbrace{ \left(c_1 + c_2 - c_3 \right) }_{>0} \zeta_2
-  + \frac{1}{2} \underbrace{ \left(-c_1 + c_2 + c_3\right) }_{>0} \zeta_3
+    \frac{1}{2} \displayUB{ \left(c_1 - c_2 + c_3 \right) }{>0} \zeta_1
+  + \frac{1}{2} \displayUB{ \left(c_1 + c_2 - c_3 \right) }{>0} \zeta_2
+  + \frac{1}{2} \displayUB{ \left(-c_1 + c_2 + c_3\right) }{>0} \zeta_3 >0
 \end{equation}
-Les coefficient des $\zeta_i$ sont positifs à cause de l'hytohèse d'inégalité triangulaire\footnote{cf section \ref{sec: Inégalité triangulaire}}.
+Les coefficients des $\zeta_i$ sont positifs à cause de l'hytohèse d'inégalité triangulaire\footnote{cf section \ref{sec: Inégalité triangulaire}}.
 \\
 
 Pour un sommet $v \in V$, on définit $U_v$ par $\{v\}$ si $v$ est en excès ou équilibré et par $\overline{\{v\}}$ sinon. On définit également
 \[
-\zeta_v(p,q,\bs{x},\bs{y}) = \mbox{max} \left( 2 \left\lceil \frac{x(U_v)-y(U_v)}{C} \right\rceil\ + \eta(p,q,U_v), \mu(p,q,U_v,\bs{x},\bs{y} \right)
+\zeta_v(p,q,\bs{x},\bs{y}) = \mbox{max} \left( 2 \left\lceil \frac{x(U_v)-y(U_v)}{C} \right\rceil\ + \eta(p,q,U_v), \mu(p,q,U_v,\bs{x},\bs{y}) \right)
 \]
 
 \section{Algorithme d'obtention de la solution optimale}
@@ -436,11 +436,155 @@ Règles permettant de trouver le premier mouvement d'une solution optimale
 
 L'algorithme précédent donne le premier mouvement d'une solution optimale et le coût de cette solution est donnée par :
 \[
-\sum_{v \in V}\xi_v(p,q,\bf{x},\bf{y})
+\frac{1}{2} \left(c_1 - c_2 + c_3 \right) \zeta_1(p,q,\bs{x},\bs{y})
++ \frac{1}{2} \left(c_1 + c_2 - c_3 \right) \zeta_2(p,q,\bs{x},\bs{y})
++ \frac{1}{2} \left(-c_1 + c_2 + c_3\right) \zeta_3(p,q,\bs{x},\bs{y})
 \]
 \end{thm}
 
 \section{Preuve de l'algorithme précédent}
+
+Montrons que :
+\begin{gather} \label{Récurrence triangle}
+  \zeta_v(p,q,\bs{x},\bs{y}) = \left\{
+  \begin{array}{ll}
+    1+\zeta_v(p',q,\bs{x'},\bs{y}) & \mbox{si } v=p \mbox{ ou } v=p' \\
+    \zeta_v(p',q,\bs{x'},\bs{y}) & \mbox{sinon}
+  \end{array}
+  \right.
+\end{gather}
+Dans chacun des différents cas, l'égalité \ref{Récurrence triangle} est évidente dans le cas où $v \ne p$ et où $v \ne p'$.
+
+\subsection*{Cas 1.1 et 1.2}
+
+L'égalité \ref{Récurrence triangle} est évidente dans ce cas.
+
+\subsection*{Cas 2.1}
+
+On note $A = 2 \left\lceil \frac{\displaystyle x(U_p)-y(U_p)}{\displaystyle C} \right\rceil$
+
+\begin{gather*}
+  \begin{array}{r|c|c|c|c||c|}
+    \multicolumn{2}{c|}{}
+    & 2 \left\lceil \frac{x(U_p)-y(U_p)}{C} \right\rceil
+    & \eta(p,q,U_p)
+    & \mu(p,q,U_p,\bs{x},\bs{y})
+    & \zeta_p(p,q,\bs{x},\bs{y})
+    \\ \hline
+    \multirow{2}{*}{$p$ équilibrée}
+    & p=q
+    & \multirow{2}{*}{= A = 0}
+    & 0
+    & 2
+    & 2
+    \\ \cdashline{2-2}\cdashline{4-6}
+    & p \ne q
+    &
+    & 1
+    & 1
+    & 1
+    \\ \hline
+    \multirow{2}{*}{$p$ en défaut}
+    & p=q
+    & \multirow{2}{*}{$= A \ge 2$}
+    & 0
+    & 2
+    & A
+    \\ \cdashline{2-2}\cdashline{4-6}
+    & p \ne q
+    &
+    & 1
+    & 1
+    & A + 1
+    \\ \hline
+  \end{array}
+\end{gather*}
+
+\begin{gather*}
+  \begin{array}{r|c|c|c|c||c|}
+    \multicolumn{2}{c|}{}
+    & 2 \left\lceil \frac{x'(U_p)-y(U_p)}{C} \right\rceil
+    & \eta(p',q,U_p)
+    & \mu(p',q,U_p,\bs{x'},\bs{y})
+    & \zeta_p(p',q,\bs{x'},\bs{y})
+    \\ \hline
+    \multirow{2}{*}{$p$ équilibrée}
+    & p=q
+    & \multirow{2}{*}{= A = 0}
+    & -1
+    & 1
+    & 1
+    \\ \cdashline{2-2}\cdashline{4-6}
+    & p \ne q
+    &
+    & 0
+    & 0
+    & 0
+    \\ \hline
+    \multirow{2}{*}{$p$ en défaut}
+    & p=q
+    & \multirow{2}{*}{$= A \ge 2$}
+    & -1
+    & 1
+    & A-1
+    \\ \cdashline{2-2}\cdashline{4-6}
+    & p \ne q
+    &
+    & 0
+    & 2
+    & A
+    \\ \hline
+  \end{array}
+\end{gather*}
+Donc $\zeta_p(p,q,\bs{x},\bs{y}) = 1 + \zeta_p(p',q,\bs{x'},\bs{y})$.
+\\
+
+On note $B = 2 \left\lceil \frac{\displaystyle x(U_{p'})-y(U_{p'})}{\displaystyle C} \right\rceil$
+
+\begin{gather*}
+  \begin{array}{r|c|c|c||c|}
+    & 2 \left\lceil \frac{x(U_{p'})-y(U_{p'})}{C} \right\rceil
+    & \eta(p,q,U_{p'})
+    & \mu(p,q,U_{p'},\bs{x},\bs{y})
+    & \zeta_p(p,q,\bs{x},\bs{y})
+    \\ \hline
+    p' = q
+    & \multirow{2}{*}{$= B \ge 2$}
+    & 1
+    & 1
+    & B + 1
+    \\ \cline{1-1}\cline{3-5}
+    p' \ne q
+    &
+    & 0
+    & 2
+    & B
+    \\ \hline
+  \end{array}
+\end{gather*}
+
+\begin{gather*}
+  \begin{array}{r|c|c|c||c|}
+    & 2 \left\lceil \frac{x'(U_{p'})-y(U_{p'})}{C} \right\rceil
+    & \eta(p',q,U_{p'})
+    & \mu(p',q,U_{p'},\bs{x'},\bs{y})
+    & \zeta_p(p',q,\bs{x'},\bs{y})
+    \\ \hline
+    p' = q
+    & \multirow{2}{*}{$= B \ge 2$}
+    & 0
+    & 2
+    & B
+    \\ \cline{1-1}\cline{3-5}
+    p' \ne q
+    &
+    & -1
+    & 1
+    & B - 1
+    \\ \hline
+  \end{array}
+\end{gather*}
+Donc $\zeta_{p'}(p,q,\bs{x},\bs{y}) = 1 + \zeta_{p'}(p',q,\bs{x'},\bs{y})$.
 
 \chapter{Capacité du camion infinie}
 
