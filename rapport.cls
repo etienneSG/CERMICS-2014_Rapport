@@ -21,6 +21,7 @@
 \usepackage{graphicx}
 
 %Pour pouvoir modifier les énumérations
+\frenchbsetup{StandardLists=true}
 \usepackage{enumitem}
 \usepackage[ampersand]{easylist}
 
