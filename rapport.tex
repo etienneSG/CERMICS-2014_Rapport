@@ -553,14 +553,14 @@ On note $A = 2 \left\lceil \frac{\displaystyle x(U_p)-y(U_p)}{\displaystyle C} \
 Donc $\zeta_p(p,q,\bs{x},\bs{y}) = 1 + \zeta_p(p',q,\bs{x'},\bs{y})$.
 \\
 
-On note $B = 2 \left\lceil \frac{\displaystyle x(U_{p'})-y(U_{p'})}{\displaystyle C} \right\rceil$
+On note $B = 2 \left\lceil \frac{\displaystyle x(U_{p'})-y(U_{p'})}{\displaystyle C} \right\rceil$.
 
 \begin{gather*}
   \begin{array}{r|c|c|c||c|}
     & 2 \left\lceil \frac{x(U_{p'})-y(U_{p'})}{C} \right\rceil
     & \eta(p,q,U_{p'})
     & \mu(p,q,U_{p'},\bs{x},\bs{y})
-    & \zeta_p(p,q,\bs{x},\bs{y})
+    & \zeta_{p'}(p,q,\bs{x},\bs{y})
     \\ \hline
     p' = q
     & \multirow{2}{*}{$= B \ge 2$}
@@ -582,7 +582,7 @@ On note $B = 2 \left\lceil \frac{\displaystyle x(U_{p'})-y(U_{p'})}{\displaystyl
     & 2 \left\lceil \frac{x'(U_{p'})-y(U_{p'})}{C} \right\rceil
     & \eta(p',q,U_{p'})
     & \mu(p',q,U_{p'},\bs{x'},\bs{y})
-    & \zeta_p(p',q,\bs{x'},\bs{y})
+    & \zeta_{p'}(p',q,\bs{x'},\bs{y})
     \\ \hline
     p' = q
     & \multirow{2}{*}{$= B \ge 2$}
@@ -615,6 +615,157 @@ Donc $\zeta_{p'}(p,q,\bs{x},\bs{y}) = 1 + \zeta_{p'}(p',q,\bs{x'},\bs{y})$.
 \includegraphics[scale=0.5]{graphe_triangulaire_221.jpg}
 \end{center}
 \end{minipage}
+
+On note $A = 2 \left\lceil \frac{\displaystyle x(U_p)-y(U_p)}{\displaystyle C} \right\rceil$.
+
+\begin{gather*}
+  \begin{array}{c|c|c|c|c||c|}
+    \multicolumn{2}{c|}{}
+    & 2 \left\lceil \frac{x(U_p)-y(U_p)}{C} \right\rceil
+    & \eta(p,q,U_p)
+    & \mu(p,q,U_p,\bs{x},\bs{y})
+    & \zeta_p(p,q,\bs{x},\bs{y})
+    \\ \hline
+    p \mbox{ équilibrée}
+    & p=q
+    & \multirow{2}{*}{$2$}
+    & 0
+    & 2
+    & 2
+    \\ \cdashline{2-2}\cdashline{4-6}
+    \mbox{après mouvement}
+    & p \ne q
+    &
+    & -1
+    & 1
+    & 1
+    \\ \hline
+    p \mbox{ en excès}
+    & p=q
+    & \multirow{2}{*}{$= A \ge 4$}
+    & 0
+    & 2
+    & A
+    \\ \cdashline{2-2}\cdashline{4-6}
+    \mbox{après mouvement}
+    & p \ne q
+    &
+    & -1
+    & 1
+    & A-1
+    \\ \hline
+  \end{array}
+\end{gather*}
+
+\begin{gather*}
+  \begin{array}{c|c|c|c|c||c|}
+    \multicolumn{2}{c|}{}
+    & 2 \left\lceil \frac{x'(U_p)-y(U_p)}{C} \right\rceil
+    & \eta(p',q,U_p)
+    & \mu(p',q,U_p,\bs{x'},\bs{y})
+    & \zeta_p(p',q,\bs{x'},\bs{y})
+    \\ \hline
+    p \mbox{ équilibrée}
+    & p=q
+    & \multirow{2}{*}{$0$}
+    & 1
+    & 1
+    & 1
+    \\ \cdashline{2-2}\cdashline{4-6}
+    \mbox{après mouvement}
+    & p \ne q
+    &
+    & 0
+    & 0
+    & 0
+    \\ \hline
+    p \mbox{ en excès}
+    & p=q
+    & \multirow{2}{*}{$= A-2 \ge 2$}
+    & 1
+    & 1
+    & A-1
+    \\ \cdashline{2-2}\cdashline{4-6}
+    \mbox{après mouvement}
+    & p \ne q
+    &
+    & 0
+    & 2
+    & A-2
+    \\ \hline
+  \end{array}
+\end{gather*}
+Donc $\zeta_p(p,q,\bs{x},\bs{y}) = 1 + \zeta_p(p',q,\bs{x'},\bs{y})$.
+\\
+
+On note $B = 2 \left\lceil \frac{\displaystyle x(U_{p'})-y(U_{p'})}{\displaystyle C} \right\rceil$.
+
+\begin{gather*}
+  \begin{array}{r|c|c|c||c|}
+    & 2 \left\lceil \frac{x(U_{p'})-y(U_{p'})}{C} \right\rceil
+    & \eta(p,q,U_{p'})
+    & \mu(p,q,U_{p'},\bs{x},\bs{y})
+    & \zeta_{p'}(p,q,\bs{x},\bs{y})
+    \\ \hline
+    p' = q
+    & \multirow{2}{*}{$= B \ge 2$}
+    & 1
+    & 1
+    & B + 1
+    \\ \cline{1-1}\cline{3-5}
+    p' \ne q
+    &
+    & 0
+    & 2
+    & B
+    \\ \hline
+  \end{array}
+\end{gather*}
+
+\underline{$1^{er}$ sous-cas : $p'$ reste en défaut après le mouvement}
+\begin{gather*}
+  \begin{array}{r|c|c|c||c|}
+    & 2 \left\lceil \frac{x'(U_{p'})-y(U_{p'})}{C} \right\rceil
+    & \eta(p',q,U_{p'})
+    & \mu(p',q,U_{p'},\bs{x'},\bs{y})
+    & \zeta_{p'}(p',q,\bs{x'},\bs{y})
+    \\ \hline
+    p' = q
+    & \multirow{2}{*}{$= B \ge 2$}
+    & 0
+    & 2
+    & B
+    \\ \cline{1-1}\cline{3-5}
+    p' \ne q
+    &
+    & -1
+    & 1
+    & B - 1
+    \\ \hline
+  \end{array}
+\end{gather*}
+
+\underline{$2^{ème}$ sous-cas : $p'$ est équlibrée ou en excès après le mouvement}\\
+On se place après le mouvement de $p$ à $p'$.
+\begin{itemize}
+\item \underline{Si $p'=q$}, alors comme $p$ est équilibrée ou en excès, on en déduit que $r$ est équilibrée ou en défaut.\\
+Or $r$ n'est pas en défaut (sinon, on serait aller sur $r$ car $p'=q$). Donc $r$ est équilibrée.\\
+On en déduit que $p$ et $p'$ sont également équilibrées.\\
+D'où : $\zeta_{p'}(p,q,\bs{x},\bs{y}) = 1$ et $\zeta_{p'}(p',q,\bs{x'},\bs{y}) = 0$.
+
+\item \underline{Si $p' \ne q$}
+\begin{equation}\notag
+\zeta_{p'}(p,q,\bs{x},\bs{y})
+= \mbox{max} \left( 2 \left\lceil \frac{x(U_{p'})-y(U_{p'})}{C} \right\rceil + 0, 2\right)
+= 2 \left\lceil \frac{ x(U_{p'})-y(U_{p'})}{C} \right\rceil
+\end{equation}
+\begin{equation}\notag
+\zeta_{p'}(p',q,\bs{x'},\bs{y})
+= \mbox{max} \left( 2 \left\lceil \frac{x'(U_{p'})-y(U_{p'})}{C} \right\rceil + 1, 1\right)
+= 2 \left\lceil \frac{x(U_{p'})-y(U_{p'})}{C} \right\rceil - 1
+\end{equation}
+\end{itemize}
+Dans les deux cas, $\zeta_{p'}(p,q,\bs{x},\bs{y}) = 1 + \zeta_{p'}(p',q,\bs{x'},\bs{y})$.
 
 \chapter{Capacité du camion infinie}
 
