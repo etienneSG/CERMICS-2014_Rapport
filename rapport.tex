@@ -767,6 +767,235 @@ D'où : $\zeta_{p'}(p,q,\bs{x},\bs{y}) = 1$ et $\zeta_{p'}(p',q,\bs{x'},\bs{y}) 
 \end{itemize}
 Dans les deux cas, $\zeta_{p'}(p,q,\bs{x},\bs{y}) = 1 + \zeta_{p'}(p',q,\bs{x'},\bs{y})$.
 
+\subsection*{Cas 2.2.2.1}
+
+\begin{minipage}{0.5\linewidth}
+\begin{itemize}
+\item $p$ en excès
+\item $p'$ et $r$ en défaut
+\item $p' \ne q$
+\item on transporte $x(p)-y(p)$ vélos
+\item $x(p)-y(p) < C$
+\end{itemize}
+\end{minipage}
+\begin{minipage}{0.5\linewidth}
+\begin{center}
+\includegraphics[scale=0.5]{graphe_triangulaire_221.jpg}
+\end{center}
+\end{minipage}
+
+\begin{gather*}
+  \begin{array}{c|c|c|c||c|}
+    & 2 \left\lceil \frac{x(U_p)-y(U_p)}{C} \right\rceil
+    & \eta(p,q,U_p)
+    & \mu(p,q,U_p,\bs{x},\bs{y})
+    & \zeta_p(p,q,\bs{x},\bs{y})
+    \\ \hline
+    p=q
+    & \multirow{2}{*}{$2$}
+    & 0
+    & 2
+    & 2
+    \\ \cline{1-1}\cline{3-5}
+    p \ne q
+    &
+    & -1
+    & 1
+    & 1
+    \\ \hline
+  \end{array}
+\end{gather*}
+
+\begin{gather*}
+  \begin{array}{c|c|c|c||c|}
+    & 2 \left\lceil \frac{x'(U_p)-y(U_p)}{C} \right\rceil
+    & \eta(p',q,U_p)
+    & \mu(p',q,U_p,\bs{x'},\bs{y})
+    & \zeta_p(p',q,\bs{x'},\bs{y})
+    \\ \hline
+    p=q
+    & \multirow{2}{*}{$0$}
+    & 1
+    & 1
+    & 1
+    \\ \cline{1-1}\cline{3-5}
+    p \ne q
+    &
+    & 0
+    & 0
+    & 0
+    \\ \hline
+  \end{array}
+\end{gather*}
+Donc $\zeta_p(p,q,\bs{x},\bs{y}) = 1 + \zeta_p(p',q,\bs{x'},\bs{y})$.
+\\
+
+\[\zeta_{p'}(p,q,\bs{x},\bs{y}) = \mbox{max}\left(2 \left\lceil \frac{x(U_{p'})-y(U_{p'})}{C} \right\rceil + 0, 2\right)\]
+Or $x(U_{p'})-y(U_{p'})<C$ (sinon, $r$ serait en excès).
+Donc $\zeta_{p'}(p,q,\bs{x},\bs{y}) = 2$.
+
+\[\zeta_{p'}(p',q,\bs{x'},\bs{y}) = \mbox{max}\left(2 \left\lceil \frac{x'(U_{p'})-y(U_{p'})}{C} \right\rceil + 1,1\right)\]
+Or $x(U_{p'})-y(U_{p'})<0$ (car $p$ est équilibrée et $r$ est en défaut).
+Donc $\zeta_{p'}(p',q,\bs{x'},\bs{y}) = 1$.
+\\
+\\
+Donc $\zeta_{p'}(p,q,\bs{x},\bs{y}) = 1 + \zeta_{p'}(p',q,\bs{x'},\bs{y})$.
+
+\subsection*{Cas 2.2.2.2.1}
+
+\begin{minipage}{0.5\linewidth}
+\begin{itemize}
+\item $p$ en excès
+\item $p'$ en défaut
+\item $r$ en excès ou équilibrée
+\item on transporte $x(p)-y(p)$ vélos
+\item $x(p)-y(p) < C$
+\item $x(p) - y(p) + Ex > C$
+\end{itemize}
+\end{minipage}
+\begin{minipage}{0.5\linewidth}
+\begin{center}
+\includegraphics[scale=0.5]{graphe_triangulaire_221.jpg}
+\end{center}
+\end{minipage}
+
+\begin{gather*}
+  \begin{array}{c|c|c|c||c|}
+    & 2 \left\lceil \frac{x(U_p)-y(U_p)}{C} \right\rceil
+    & \eta(p,q,U_p)
+    & \mu(p,q,U_p,\bs{x},\bs{y})
+    & \zeta_p(p,q,\bs{x},\bs{y})
+    \\ \hline
+    p=q
+    & \multirow{2}{*}{$2$}
+    & 0
+    & 2
+    & 2
+    \\ \cline{1-1}\cline{3-5}
+    p \ne q
+    &
+    & -1
+    & 1
+    & 1
+    \\ \hline
+  \end{array}
+\end{gather*}
+
+\begin{gather*}
+  \begin{array}{c|c|c|c||c|}
+    & 2 \left\lceil \frac{x'(U_p)-y(U_p)}{C} \right\rceil
+    & \eta(p',q,U_p)
+    & \mu(p',q,U_p,\bs{x'},\bs{y})
+    & \zeta_p(p',q,\bs{x'},\bs{y})
+    \\ \hline
+    p=q
+    & \multirow{2}{*}{$0$}
+    & 1
+    & 1
+    & 1
+    \\ \cline{1-1}\cline{3-5}
+    p \ne q
+    &
+    & 0
+    & 0
+    & 0
+    \\ \hline
+  \end{array}
+\end{gather*}
+Donc $\zeta_p(p,q,\bs{x},\bs{y}) = 1 + \zeta_p(p',q,\bs{x'},\bs{y})$.
+\\
+
+On note $\gamma \in \NN \cup \{-1\}$ l'entier tel que $x(r)-y(r)=\gamma. C + Ex$. Alors :
+\[
+2 \left\lceil \frac{x(U_{p'})-y(U_{p'})}{C} \right\rceil
+= 2 \left\lceil \frac{x(p)-y(p)+x(r)-y(r)}{C} \right\rceil
+= 2 \left\lceil \frac{x(p)-y(p)+\gamma. C + Ex}{C} \right\rceil
+= 2\gamma + 4
+\]
+\[
+2 \left\lceil \frac{x'(U_{p'})-y(U_{p'})}{C} \right\rceil
+= 2 \left\lceil \frac{x'(p)-y(p)+x'(r)-y(r)}{C} \right\rceil
+= 2 \left\lceil \frac{x(r)-y(r)}{C} \right\rceil
+= 2 \left\lceil \frac{\gamma. C + Ex}{C} \right\rceil
+= 2\gamma + 2
+\]
+De plus, $\gamma = -1$ si et seulement si $r$ est équilibrée.
+
+\begin{gather*}
+  \begin{array}{c|c|c|c|c||c|}
+    \multicolumn{2}{c|}{}
+    & 2 \left\lceil \frac{x(U_{p'})-y(U_{p'})}{C} \right\rceil
+    & \eta(p,q,U_{p'})
+    & \mu(p,q,U_{p'},\bs{x},\bs{y})
+    & \zeta_{p'}(p,q,\bs{x},\bs{y})
+    \\ \hline
+    \multirow{2}{*}{$r$ équilibrée}
+    & p'=q
+    & \multirow{2}{*}{$2\gamma+4=2$}
+    & -1
+    & 1
+    & 1
+    \\ \cdashline{2-2}\cdashline{4-6}
+    & p' \ne q
+    &
+    & 0
+    & 2
+    & 2
+    \\ \hline
+    \multirow{2}{*}{$r$ en excès}
+    & p'=q
+    & \multirow{2}{*}{$2\gamma+4 \ge 4$}
+    & -1
+    & 1
+    & 2\gamma+3
+    \\ \cdashline{2-2}\cdashline{4-6}
+    & p' \ne q
+    &
+    & 0
+    & 2
+    & 2\gamma+4
+    \\ \hline
+  \end{array}
+\end{gather*}
+
+\begin{gather*}
+  \begin{array}{c|c|c|c|c||c|}
+    \multicolumn{2}{c|}{}
+    & 2 \left\lceil \frac{x'(U_{p'})-y(U_{p'})}{C} \right\rceil
+    & \eta(p',q,U_{p'})
+    & \mu(p',q,U_{p'},\bs{x'},\bs{y})
+    & \zeta_{p'}(p',q,\bs{x'},\bs{y})
+    \\ \hline
+    \multirow{2}{*}{$r$ équilibrée}
+    & p'=q
+    & \multirow{2}{*}{$2\gamma+2=0$}
+    & 0
+    & 0
+    & 0
+    \\ \cdashline{2-2}\cdashline{4-6}
+    & p' \ne q
+    &
+    & 1
+    & 1
+    & 1
+    \\ \hline
+    \multirow{2}{*}{$r$ en excès}
+    & p'=q
+    & \multirow{2}{*}{$2\gamma+2 \ge 2$}
+    & 0
+    & 2
+    & 2\gamma+2
+    \\ \cdashline{2-2}\cdashline{4-6}
+    & p' \ne q
+    &
+    & 1
+    & 1
+    & 2\gamma+3
+    \\ \hline
+  \end{array}
+\end{gather*}
+Donc $\zeta_{p'}(p,q,\bs{x},\bs{y}) = 1 + \zeta_{p'}(p',q,\bs{x'},\bs{y})$.
+
 \chapter{Capacité du camion infinie}
 
 \chapter{Capacité du camion unitaire}

@@ -84,6 +84,7 @@
 %Raccourcis utile
 \newcommand\RR{\mathbb{R}}         %R de l'ensemble des réels
 \newcommand\ZZ{\mathbb{Z}}         %Z de l'ensemble des relatifs
+\newcommand\NN{\mathbb{N}}         %N de l'ensemble des naturels
 \newcommand\bs[1]{\boldsymbol{#1}} %Symbole en gras dans une formule mathématique
 
 %On rédéfinit les chapitres
