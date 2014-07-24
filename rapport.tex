@@ -29,7 +29,7 @@
     Rapport de stage scientifique
     
     \vspace{0.3cm}
-    Etienne de \textsc{Saint Germain}\\
+    Etienne \textsc{Gaillard} de \textsc{Saint Germain}\\
     Élève ingénieur\\
     Département IMI
     
@@ -62,7 +62,7 @@
 
 \item Année académique : 2013/2014
 
-\item Auteur : Etienne de \textsc{Saint Germain}
+\item Auteur : Etienne \textsc{Gaillard} de \textsc{Saint Germain}
 
 \item Formation : 2ème année
 
@@ -74,7 +74,7 @@
 
 \item Maître de stage : M. Frédéric Meunier
 
-\item Mots-clés caractérisant votre rapport (4 à 5 mots maximum) : compléxité, graphe, régulation
+\item Mots-clés caractérisant votre rapport (4 à 5 mots maximum) : mathématiques théoriques, compléxité, graphe, optimisation, équilibrage
 
 \item Thème École : Mathématiques
 \end{itemize}
@@ -83,18 +83,16 @@
 \chapter*{Remerciements}
 \addcontentsline{toc}{chapter}{Remerciements}
 
-INSERT BULLSHIT HERE
 
 \chapter*{Résumé}
 \addcontentsline{toc}{chapter}{Résumé}
-Résumer son rapport ici\\
-\\
-\textbf{Mots clés :} comment, ecrire, un, beau, rapport
+
+\textbf{Mots clés :} mathématiques théoriques, complexité, optimisation, graphe, équilibrage
+
 \chapter*{Abstract}
 \addcontentsline{toc}{chapter}{Abstract}
-La même chose mais en anglais\\
-\\
-\textbf{Keywords :} how, to, write, bullshit
+
+\textbf{Keywords :}
 
 % Ces noms ne sont pas automatiques, les changer manuellement si vous passez en anglais.
 \tableofcontents
@@ -102,12 +100,18 @@ La même chose mais en anglais\\
 \listoffigures
 \addcontentsline{toc}{chapter}{Liste des figures}
 
-\chapter*{Organisme d'accueil}
-\addcontentsline{toc}{chapter}{Organisme d'accueil}
+\chapter*{Organisme d'accueil : le CERMICS}
+\addcontentsline{toc}{chapter}{Organisme d'accueil : le CERMICS}
 
-Vous devez présenter l’organisme qui vous accueille : le lieu et le contexte du stage, le type d’organisme (laboratoire public, entreprise en France, à l’étranger), sa structure, ses activités et ses ressources. Vous devez également présenter votre maître de stage dans le cadre de ses fonctions et des travaux de recherche qu’il mène.
+Le CERMICS (Centre d'Enseignement et de Recherche en Mathématiques et Calcul Scientifique) est un département de mathématiques appliquées de l'\'Ecole des Ponts ParisTech et de l'Université Paris-Est. Ses activités sont regroupées en trois grands dommaines : le calcul scientifique, l'optimisation et les probabilités appliquées.
 
-\part{Rapport}
+L'équipe de cacul scientifique s'intéresse aux applications liées à la convection des poluants dans le sol et à l'hydrologie (souterraine ou de surface). Dans ce cadre, elle développe des méthodes numériques basées sur les éléments finis. En plus de ces applications, elle explore une grande variété de sujets liés à la modélisation et à la simulation numérique des phénomènes physiques tels la physique particulaire et multi-échelle. L'étude est à la fois théorique (sur propriétés des models) et pratique (sur l'implémentation algorithmique).
+
+L'équipe d'optimisation étudie le contrôle des systèmes dynamiques et en particulier les méthodes d'optimisation numérique et stochastique. Elle étudie également les transports ou la gestion de ressources. Enfin, une partie est consacrée à la recherche opérationnelle sous la direction de Frédéric Meunier mon maître de stage. Ici, il s'agit de modéliser des problèmes industriels et d'y apporter des réponses théoriques ou -et- pratiques. La recherche peut également se faire sur des questions théoriques et encore ouverte dans la recherche opérationnelle.
+
+Pour terminer, en probabilités appliquées sont étudiées les méthodes numériques et probabilistes de représentation des solutions des EDP\footnote{équations aux dérivées partielles}, la modélisation probabiliste de manière générale ou en lien avec la physique, la biologie et les mathématiques financières.
+
+\cleardoublepage
 
 \chapter{Introduction}
 
@@ -164,9 +168,9 @@ Le problème introduit par les auteurs de l'article \cite{Benchimol2011} s'expri
 
 \section{Résultats}
 
-La section \ref{Résultats préliminaires} présentent les hypothèses de travails et quelques résultats préliminaires sur les graphes circulaires à \emph{n} sommets. La section \ref{Cas du Triangle} présente un algorithme permettant d'obtenir une solution optimale avec au plus cinq disjonction de cas dans le cas du triangle ainsi qu'une preuve de l'optimalité de la solution retournée par l'agorithme.
+La section \ref{Résultats préliminaires} présentent les hypothèses de travails et quelques résultats préliminaires sur les graphes circulaires à $n$ sommets. La section \ref{Cas du Triangle} présente un algorithme permettant d'obtenir une solution optimale avec au plus cinq disjonction de cas dans le cas du triangle ainsi qu'une preuve de l'optimalité de la solution retournée par l'agorithme.
 
-\chapter{Résultats préliminaires dans un graphe circulaire à \textit{n} sommets}
+\chapter{Résultats préliminaires dans un graphe circulaire à $n$ sommets}
 \label{Résultats préliminaires}
 
 \section{Inégalité ``triangulaire'' sur les coûts des arrêtes}
@@ -192,7 +196,7 @@ Si l'inégalité $(*)$ est une égalité, alors les deux séquences sont équiva
 \section{Borne inférieure de la solution optimale (valable pour un graphe quelconque)}
 \label{Borne inf générale}
 
-Nous nous contentons ici de récrire la borne inférieure trouvées par les auteurs de l'article \cite{Benchimol2011}.
+Nous nous contentons ici de récrire la borne inférieure trouvée par les auteurs de l'article \cite{Benchimol2011}.
 \\
 
 Une borne inféieure du SSBP est la solution optimale du programme linéaire en nombre entier dont les variables ``comptent'' le nombre de fois où le camion passe par chaque arrête. Les contraintes sont les suivantes :
@@ -226,22 +230,27 @@ Une borne inféieure du SSBP est la solution optimale du programme linéaire en 
 \end{enumerate}
 
 Cette borne inférieure est donc solution du programme linéaire en nombre entier
-\[
+\begin{gather}\label{PLNE borne inf}
 \begin{array}{llll}
   \mbox{Min}_{\bs{z}} &\sum_{e \in E} c_ez_e & & \\
   \mbox{s.c.}       &z_e \in \ZZ_+ &\mbox{pour tout } e \in E &\mbox{(i)} \\
-                    &z(\delta(v)) \mbox{ est paire} &\mbox{pour tout } v \in V &\mbox{(ii)} \\
+                    &z(\delta(v)) \mbox{ est paire} &\mbox{pour tout } v \in V \backslash \{p,q\}&\mbox{(ii)} \\
                     &z(\delta(U)) \ge \mu(p,q,U,\bs{x},\bs{y}) &\mbox{pour tout } U \subseteq V, U \ne \emptyset &\mbox{(iii)} \\
                     &z(\delta(U)) \ge 2 \left\lceil \frac{x(U)-y(U)}{C} \right\rceil\ + \eta(p,q,U) &\mbox{pour tout } U \subseteq V, U \ne \emptyset &\mbox{(iv)}
 \end{array}
-\]
+\end{gather}
 
 \section{Un exemple où la borne inférieure n'est pas atteinte}
 
 \begin{figure}[ht]
   \label{Exemple de borne inf non atteinte}
+  \center \includegraphics[scale=0.5]{BorneInfNonAtteinte-5sommets.jpg}
   \caption{Exemple de graphe circulaire à 5 sommets où la borne inférieure n'est pas atteinte}
 \end{figure}
+
+La solution du programme linéaire en nombre entier \ref{PLNE borne inf} est $\forall e \in E, z_e = 1$. C'est-à-dire qu'il suffirait de faire un tour complet du graphe sans revenir sur ses pas pour l'équilibrer. Or on constate qu'un tel parcours ne peut pas équilibrer le graphe.
+
+Dans le cas général du graphe circulaire à $n$ sommets, on en déduit qu'on ne pourra pas utiliser l'égalité avec la borne inférieure trouvée en section \ref{Borne inf générale} pour démontrer qu'une solution est optimale.
 
 \section{Changement de variables}
 \label{Changement variables}
@@ -255,7 +264,7 @@ Soit $G=(V,E)$ un graphe dont tous les sommets sont de degrès paire. Alors tout
 Dans le cas d'un graphe circulaire, tous les sommets sont de degrès deux. Par conséquent, selon la proposition \ref{Parité coupe}\footnote{Trouver un lien vers la démonstration ou la mettre en annexe.}, les bornes inférieures des variables $(z_e)_{e \in E}$ ne sont connues que pour des ensembles paires d'arrêtes. En supposant connue la valeur de $z(\delta(U))$ pour tout $U \subseteq V$, peut-on retrouver la valeur de $z_e$ pour tout $e \in E$ ?
 
 \begin{lem}\label{Changement de base}
-Soit $G=(V,E)$ un graphe circulaire à \emph{n} sommets. ($n \ge 3$)
+Soit $G=(V,E)$ un graphe circulaire à $n$ sommets. ($n \ge 3$)
 On considère le système linéaire suivant d'inconnues $(z_e)_{e \in E}$ :
 \begin{gather}\label{Système linéaire complet}
   \sum_{e \in \delta(U)}z_e = z(\delta(U)) \quad \mbox{pour tout } U \subseteq V \mbox{ tel que } U \ne \emptyset
@@ -444,6 +453,8 @@ L'algorithme précédent donne le premier mouvement d'une solution optimale et l
 \end{thm}
 
 \section{Preuve de l'algorithme précédent}
+
+\textbf{$\bs{/!\backslash}$ Il manque un bout à faire \underline{proprement} avec F. Meunier.$\bs{/!\backslash}$}\\ (Si on a la formule de récurrence \ref{Récurrence triangle}, alors, on a bien le résultat de l'algorithme.)
 
 Montrons que :
 \begin{gather} \label{Récurrence triangle}
@@ -996,6 +1007,133 @@ De plus, $\gamma = -1$ si et seulement si $r$ est équilibrée.
 \end{gather*}
 Donc $\zeta_{p'}(p,q,\bs{x},\bs{y}) = 1 + \zeta_{p'}(p',q,\bs{x'},\bs{y})$.
 
+\subsection*{Cas 2.2.2.2.2}
+
+\begin{minipage}{0.5\linewidth}
+\begin{itemize}
+\item $p$ en excès
+\item $p'=r$ en excès
+\item la troisième station est en défaut
+\item on transporte $x(p)-y(p)$ vélos
+\item $x(p)-y(p) < C$
+\item $x(p) - y(p) + Ex \le C$
+\end{itemize}
+\end{minipage}
+\begin{minipage}{0.5\linewidth}
+\begin{center}
+\includegraphics[scale=0.5]{graphe_triangulaire_22222.jpg}
+\end{center}
+\end{minipage}
+
+\begin{gather*}
+  \begin{array}{c|c|c|c||c|}
+    & 2 \left\lceil \frac{x(U_p)-y(U_p)}{C} \right\rceil
+    & \eta(p,q,U_p)
+    & \mu(p,q,U_p,\bs{x},\bs{y})
+    & \zeta_p(p,q,\bs{x},\bs{y})
+    \\ \hline
+    p=q
+    & \multirow{2}{*}{$2$}
+    & 0
+    & 2
+    & 2
+    \\ \cline{1-1}\cline{3-5}
+    p \ne q
+    &
+    & -1
+    & 1
+    & 1
+    \\ \hline
+  \end{array}
+\end{gather*}
+
+\begin{gather*}
+  \begin{array}{c|c|c|c||c|}
+    & 2 \left\lceil \frac{x'(U_p)-y(U_p)}{C} \right\rceil
+    & \eta(p',q,U_p)
+    & \mu(p',q,U_p,\bs{x'},\bs{y})
+    & \zeta_p(p',q,\bs{x'},\bs{y})
+    \\ \hline
+    p=q
+    & \multirow{2}{*}{$0$}
+    & 1
+    & 1
+    & 1
+    \\ \cline{1-1}\cline{3-5}
+    p \ne q
+    &
+    & 0
+    & 0
+    & 0
+    \\ \hline
+  \end{array}
+\end{gather*}
+Donc $\zeta_p(p,q,\bs{x},\bs{y}) = 1 + \zeta_p(p',q,\bs{x'},\bs{y})$.
+\\
+
+On note $\gamma \in \NN \cup \{-1\}$ l'entier tel que $x(p')-y(p') = x(r)-y(r) = \gamma. C + Ex$. Alors :
+\[
+2 \left\lceil \frac{x(U_{p'})-y(U_{p'})}{C} \right\rceil
+= 2 \left\lceil \frac{x(p')-y(p')}{C} \right\rceil
+= 2 \left\lceil \frac{\gamma. C + Ex}{C} \right\rceil
+= 2\gamma + 2
+\]
+\[
+2 \left\lceil \frac{x'(U_{p'})-y(U_{p'})}{C} \right\rceil
+= 2 \left\lceil \frac{x'(p')-y(p')}{C} \right\rceil
+= 2 \left\lceil \frac{x(p)-y(p)+\gamma. C + Ex}{C} \right\rceil
+= 2\gamma + 2
+\]
+De plus, si $\gamma = -1$, alors $p'$ est équilibré ou en défaut, ce qui est faux. Donc $\gamma \ge 0$
+
+\begin{gather*}
+  \begin{array}{c|c|c|c||c|}
+    & 2 \left\lceil \frac{x(U_{p'})-y(U_{p'})}{C} \right\rceil
+    & \eta(p,q,U_{p'})
+    & \mu(p,q,U_{p'},\bs{x},\bs{y})
+    & \zeta_{p'}(p,q,\bs{x},\bs{y})
+    \\ \hline
+    p'=q
+    & \multirow{2}{*}{$2 \gamma + 2 \ge 2$}
+    & 1
+    & 1
+    & 2 \gamma + 3
+    \\ \cline{1-1}\cline{3-5}
+    p' \ne q
+    &
+    & 0
+    & 2
+    & 2\gamma + 2
+    \\ \hline
+  \end{array}
+\end{gather*}
+
+\begin{gather*}
+  \begin{array}{c|c|c|c||c|}
+    & 2 \left\lceil \frac{x'(U_{p'})-y(U_{p'})}{C} \right\rceil
+    & \eta(p',q,U_{p'})
+    & \mu(p',q,U_{p'},\bs{x'},\bs{y})
+    & \zeta_{p'}(p',q,\bs{x'},\bs{y})
+    \\ \hline
+    p'=q
+    & \multirow{2}{*}{$2 \gamma + 2 \ge 2$}
+    & 0
+    & 2
+    & 2 \gamma + 2
+    \\ \cline{1-1}\cline{3-5}
+    p' \ne q
+    &
+    & -1
+    & 1
+    & 2\gamma + 1
+    \\ \hline
+  \end{array}
+\end{gather*}
+Donc $\zeta_{p'}(p,q,\bs{x},\bs{y}) = 1 + \zeta_{p'}(p',q,\bs{x'},\bs{y})$.
+\\
+
+Dans chacun des cas de l'algorithme, l'égalité \ref{Récurrence triangle} est donc vérifiée.
+
 \chapter{Capacité du camion infinie}
 
 \chapter{Capacité du camion unitaire}
@@ -1011,14 +1149,5 @@ Il est important de souligner vos acquis personnels et professionnels durant le 
 \addcontentsline{toc}{chapter}{Bibliographie}
 
 \backmatter
-
-\appendix
-\part{Annexes}
-\chapter{Annexe 1}
-Ecrire ici
-
-\chapter{Annexe 2}
-Ou là
-
 
 \end{document}
