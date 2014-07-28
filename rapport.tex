@@ -134,9 +134,18 @@ Soient $F$ un ensemble fini et $H$ un demi-groupe additif. Soit $w \in H^F$. Alo
 
 Soit $G=(V,E)$ un graphe. Pour tout sous-ensemble de sommet $U$ de $V$, on note $\delta(U)$ l'ensemble des arrêtes ayant exactement un sommet dans $U$. Par abus de notation, si $v$ est un sommet, on notera $\delta(v)$ au lieu de $\delta(\{v\})$.
 
+Soit $G=(V,E)$ un graphe circulaire. Soit $e \in E$ une arrête du graphe. On définit un sens positif dans le graphe. Pour $i \in \ZZ$, on notera $e+i$ la $i^{ème}$ arrête $f \in E$ suivant $e$ dans le graphe. (Voir figure \ref{Notation orientation graphe circulaire}.)
+
+\begin{figure}[ht]
+  \centering
+  \includegraphics[scale=0.5]{GrapheCirculaire_NotationOrientation.jpg}
+  \caption{Orientation du graphe circulaire et ordre des arrêtes}
+  \label{Notation orientation graphe circulaire}
+\end{figure}
+
 \subsection{Modèle}
 
-On se donne un graphe $G=(V,E)$ et une capacité $C \ge 0$. Un état \emph{s} est un couple $(\bs{x},p)$ où $\bs{x} \in \RR^V_+$ et $p$ est une arrête dans $V$. Deux états $s=(\bs{x},p)$ et $s'=(\bs{y},q)$ sont dits \emph{adjacents} s'ils ont simultanément :
+On se donne un graphe $G=(V,E)$ et une capacité $C \ge 0$. Un état $s$ est un couple $(\bs{x},p)$ où $\bs{x} \in \RR^V_+$ et $p$ est une arrête dans $V$. Deux états $s=(\bs{x},p)$ et $s'=(\bs{y},q)$ sont dits \emph{adjacents} s'ils ont simultanément :
 \begin{itemize}
 \item $x_v=y_v$ pour tout $v \notin \{p,q\}$ ;
 \item $pq \in E$ ;
@@ -183,7 +192,7 @@ On se donne un graphe $G=(V,E)$ circulaire à $n$ sommets et un coût $\bs{c} \i
 
 En effet, supposons qu'il existe $e' \in E$ tel que $c_{e'} \ge \sum_{e \in E \backslash \{e'\}} c_e$ $(*)$.
 
-On se donne une solution optimale $(z_e)_{e \in E}$. On note $P = \sum_{e _in E} c_ez_e$ le coût d'une telle solution. On construit alors la séquence de mouvement $(z'_e)_{e \in E}$ par le procédé suivant : chaque passage par l'arrête $e'$ est remplacé par un passage sur les autres arrêtes avec le même nombre de vélos. Autrement dit, ``on fait le tour dans l'autre sens''. On note $P'$ le coût d'une telle séquence. On a alors :
+On se donne une solution optimale $(z_e)_{e \in E}$. On note $P = \sum_{e \in E} c_ez_e$ le coût d'une telle solution. On construit alors la séquence de mouvement $(z'_e)_{e \in E}$ par le procédé suivant : chaque passage par l'arrête $e'$ est remplacé par un passage sur les autres arrêtes avec le même nombre de vélos. Autrement dit, ``on fait le tour dans l'autre sens''. On note $P'$ le coût d'une telle séquence. On a alors :
 \begin{align*}
   P' &= \sum_{e \in E \backslash \{e'\}} c_e (z_e + z_{e'}) = \sum_{e \in E \backslash \{e'\}} c_ez_e + \left(\sum_{e \in E \backslash \{e'\}} c_{e}\right)z_{e'} \\
      &\le \sum_{e \in E \backslash \{e'\}} c_ez_e + c_{e'}z_{e'} = P
@@ -191,7 +200,7 @@ On se donne une solution optimale $(z_e)_{e \in E}$. On note $P = \sum_{e _in E}
 
 Si l'inégalité $(*)$ est stricte, alors nécessairement $z_e = 0$ (sinon, on contredit l'optimalité de la solution), et dans ce cas, nous sommes ramené au cas de la ligne qui est polynomial.
 
-Si l'inégalité $(*)$ est une égalité, alors les deux séquences sont équivalents et dans ce cas, nous pouvons traiter le problème comme le cas de la ligne.
+Si l'inégalité $(*)$ est une égalité, alors les deux séquences sont équivalentes et dans ce cas, nous pouvons traiter le problème comme le cas de la ligne.
 
 \section{Borne inférieure de la solution optimale (valable pour un graphe quelconque)}
 \label{Borne inf générale}
