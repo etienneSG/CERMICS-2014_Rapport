@@ -5,6 +5,8 @@ Ce dépot contient mon rapport de stage scientifique effectué au sein du CERMIC
 
 Seul le code LaTeX et les images sont présents.
 
+==================
+
 Options de l'excécutable compil :
 
 -a : Compil les images, les fichiers sources .tex (rapport), .cls (en-tête) et .bib (biliographie)
