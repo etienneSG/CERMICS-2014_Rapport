@@ -135,12 +135,19 @@ Soient $F$ un ensemble fini et $H$ un demi-groupe additif. Soit $w \in H^F$. Alo
 Soit $G=(V,E)$ un graphe. Pour tout sous-ensemble de sommet $U$ de $V$, on note $\delta(U)$ l'ensemble des arrêtes ayant exactement un sommet dans $U$. Par abus de notation, si $v$ est un sommet, on notera $\delta(v)$ au lieu de $\delta(\{v\})$.
 
 Soit $G=(V,E)$ un graphe circulaire. Soit $e \in E$ une arrête du graphe. On définit un sens positif dans le graphe. Pour $i \in \ZZ$, on notera $e+i$ la $i^{ème}$ arrête $f \in E$ suivant $e$ dans le graphe. (Voir figure \ref{Notation orientation graphe circulaire}.)
-
 \begin{figure}[ht]
   \centering
   \includegraphics[scale=0.5]{GrapheCirculaire_NotationOrientation.jpg}
   \caption{Orientation du graphe circulaire et ordre des arrêtes}
   \label{Notation orientation graphe circulaire}
+\end{figure}
+
+Muni d'une telle orientation, pour $u,v \in V$, on définit $\left[ u,v \right]_+$ (resp. $\left[ u,v \right]_-$) l'ensemble des stations rencontrées entre $u$ et $v$ en parcourant $G$ dans le sens positif (resp. négatif). \`A la manière des intervalles, on ouvrira ou fermera les crochets pour exprimer si l'on exclut ou inclut les bornes. (Voir figure \ref{Notation intervalle graphe}.)
+\begin{figure}[ht]
+  \centering
+  \includegraphics[scale=0.5]{GrapheCirculaire_NotationIntervalle.jpg}
+  \caption{Orientation du graphe circulaire et notation sous forme d'intervalle}
+  \label{Notation intervalle graphe}
 \end{figure}
 
 \subsection{Modèle}
