@@ -9,7 +9,7 @@ Seul le code LaTeX et les images sont présents.
 
 Options de l'excécutable compil :
 
--a : Compil les images, les fichiers sources .tex (rapport), .cls (en-tête) et .bib (biliographie)
+-a : Compile les images, les fichiers sources .tex (rapport), .cls (en-tête) et .bib (biliographie)
 
 clean : Nettoie tous les fichiers temporaires sauf le pdf généré.
 
