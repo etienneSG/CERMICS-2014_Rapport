@@ -17,6 +17,7 @@ if [ $1 = "clean" ]; then
     rm *.lot
     rm *.out
     rm *.toc
+    rm Sections/*.aux
 fi
 
 if [ $1 = "Clean" ]; then

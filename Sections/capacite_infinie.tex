@@ -1,0 +1,9 @@
+\chapter{Capacité du camion infinie}
+
+\section{Borne supérieure du coût de la solution optimale}
+
+\begin{lem}\emph{Borne supérieure du coût de la solution optimale}\\
+Le coût d'une solution optimale au SSBP est strictement inférieur $\displaystyle 2\sum_{e \in E}c_e$.
+\end{lem}
+
+\textit{Preuve :} Il suffit d'aller de $p$ à $p-1$ dans le sens positif en prenant tous les vélos sur chaque station (y compris en $p$). Tous les vélos du modèle sont alors dans le camion et toutes les stations sont vides. Puis il suffit de revenir de $p-1$ à $p$ dans le sens négatif en posant sur chaque station le nombre de vélo nécessaire pour l'équilibrer.
