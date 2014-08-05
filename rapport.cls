@@ -29,7 +29,7 @@
 \usepackage[xetex,colorlinks=true,pdfmenubar=false,pdfpagemode=UseNone,urlcolor=black,linkcolor=black,citecolor=black,filecolor=black,pdfstartview=FitH]{hyperref}
 
 %Pour plus de maths et de chimie
-\usepackage{amsmath,amsfonts,amsthm}
+\usepackage{amsmath,amsfonts,amsthm,dsfont}
 \usepackage[version=3]{mhchem} %Chimie
 \usepackage{siunitx}  %Utilisation des unités SI
 
@@ -79,12 +79,13 @@
 %On définit l'envirronnement propre au théorème
 \newtheorem{thm}{Théorème}
 \newtheorem{lem}[thm]{Lemme}
-\newtheorem{prop}{Proposition}[section]
+\newtheorem{prop}[thm]{Proposition}
 
 %Raccourcis utile
 \newcommand\RR{\mathbb{R}}         %R de l'ensemble des réels
 \newcommand\ZZ{\mathbb{Z}}         %Z de l'ensemble des relatifs
 \newcommand\NN{\mathbb{N}}         %N de l'ensemble des naturels
+\newcommand\Indic{\mathds{1}}      %Fonction indicatrice d'un ensemble
 \newcommand\bs[1]{\boldsymbol{#1}} %Symbole en gras dans une formule mathématique
 
 %On rédéfinit les chapitres

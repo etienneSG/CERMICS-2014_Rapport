@@ -9,7 +9,7 @@ On se donne un graphe $G=(V,E)$ circulaire à $n$ sommets et un coût $\bs{c} \i
   c_{e'}<\sum_{e \in E \backslash \{e'\}} c_e \quad \text{pour tout } e' \in E
 \end{gather}
 
-En effet, supposons qu'il existe $e' \in E$ tel que $c_{e'} \ge \sum_{e \in E \backslash \{e'\}} c_e$ $(*)$.
+En effet, supposons qu'il existe $e' \in E$ tel que $c_{e'} \ge \sum_{e \in E \backslash \{e'\}} c_e$.
 
 On se donne une solution optimale $(z_e)_{e \in E}$. On note $P = \sum_{e \in E} c_ez_e$ le coût d'une telle solution. On construit alors la séquence de mouvement $(z'_e)_{e \in E}$ par le procédé suivant : chaque passage par l'arête $e'$ est remplacé par un passage sur les autres arêtes avec le même nombre de vélos. Autrement dit, ``on fait le tour dans l'autre sens''. On note $P'$ le coût d'une telle séquence. On a alors :
 \begin{align*}
@@ -17,9 +17,7 @@ On se donne une solution optimale $(z_e)_{e \in E}$. On note $P = \sum_{e \in E}
      &\le \sum_{e \in E \backslash \{e'\}} c_ez_e + c_{e'}z_{e'} = P
 \end{align*}
 
-Si l'inégalité $(*)$ est stricte, alors nécessairement $z_e = 0$ (sinon, on contredit l'optimalité de la solution), et dans ce cas, nous sommes ramené au cas de la ligne qui est polynomial.
-
-Si l'inégalité $(*)$ est une égalité, alors les deux séquences sont équivalentes et dans ce cas, nous pouvons traiter le problème comme le cas de la ligne.
+Par conséquent, il existe une solution au moins aussi bonne ne passant pas par $e'$.
 
 \section{Borne inférieure de la solution optimale (valable pour un graphe quelconque)}
 \label{Borne inf générale}
@@ -27,11 +25,11 @@ Si l'inégalité $(*)$ est une égalité, alors les deux séquences sont équiva
 Nous nous contentons ici de récrire la borne inférieure trouvée par les auteurs de l'article \cite{Benchimol2011}.
 \\
 
-Une borne inféieure du SSBP est la solution optimale du programme linéaire en nombre entier dont les variables ``comptent'' le nombre de fois où le camion passe par chaque arête. Les contraintes sont les suivantes :
+Une borne inféieure du SSBP est la solution optimale du programme linéaire en nombres entiers dont les variables ``comptent'' le nombre de fois où le camion passe par chaque arête. Les contraintes sont les suivantes :
 \begin{enumerate}[label=(\roman*)]
 \item les variables sont des entiers naturels.
-\item la condition d'Euleur : sauf peut-être en $p$ et en $q$, le camion entre et sort un nombre paire de fois.
-\item ``subtour elimination'' : si le camion est en $p \in U \subseteq V $ et qu'il existe des stations non-équilibrée dans $\overline{U}$, alors le camion doit nécessairement traverser $\delta(U)$ au moins une fois (voire plus suivant la position de $q$). Nous utiliserons la notation suivante pour écrire cette contrainte :
+\item la condition d'Euler : sauf peut-être en $p$ et en $q$, le camion entre et sort de tout sommet un nombre paire de fois.
+\item ``subtour elimination'' : si le camion est en $p \in U \subseteq V $ et qu'il existe des stations non-équilibrée dans $\overline{U}$, alors le camion doit nécessairement traverser $\delta(U)$ au moins une fois (voire plus, suivant la position de $q$). Nous utiliserons la notation suivante pour écrire cette contrainte :
 \[
 \mu(p,q,U,\bs{x},\bs{y}) = \left\{
 \begin{array}{ll}
@@ -57,7 +55,7 @@ Une borne inféieure du SSBP est la solution optimale du programme linéaire en 
 \]
 \end{enumerate}
 
-Cette borne inférieure est donc solution du programme linéaire en nombre entier
+Cette borne inférieure est donc solution du programme mathématique en nombres entiers
 \begin{gather}\label{PLNE borne inf}
 \begin{array}{llll}
   \mbox{Min}_{\bs{z}} &\sum_{e \in E} c_ez_e & & \\
@@ -76,9 +74,9 @@ Cette borne inférieure est donc solution du programme linéaire en nombre entie
   \caption{Exemple de graphe circulaire à 5 sommets où la borne inférieure n'est pas atteinte}
 \end{figure}
 
-La solution du programme linéaire en nombre entier \ref{PLNE borne inf} est $\forall e \in E, z_e = 1$. C'est-à-dire qu'il suffirait de faire un tour complet du graphe sans revenir sur ses pas pour l'équilibrer. Or on constate qu'un tel parcours ne peut pas équilibrer le graphe.
+La solution du programme linéaire en nombre entier \eqref{PLNE borne inf} est $z_e = 1$, pour tout $e \in E$. C'est-à-dire qu'il suffirait de faire un tour complet du graphe sans revenir sur ses pas pour l'équilibrer. Or on constate qu'un tel parcours ne peut pas équilibrer le graphe.
 
-Dans le cas général du graphe circulaire à $n$ sommets, on en déduit qu'on ne pourra pas utiliser l'égalité avec la borne inférieure trouvée en section \ref{Borne inf générale} pour démontrer qu'une solution est optimale.
+Si dans certains cas particuliers du graphe circulaire, on peut utiliser l'égalité avec la borne inférieure solution du programme mathématique \eqref{PLNE borne inf}, on sait que dans le cas général cette méthode n'aboutira pas. En effet, on vient de montrer qu'il existe des cas où cette borne inférieure n'est pas atteinte.
 
 \section{Changement de variables}
 \label{Changement variables}
@@ -89,11 +87,18 @@ La description de la borne inférieure dans la section \ref{Borne inf générale
 Soit $G=(V,E)$ un graphe dont tous les sommets sont de degrès paire. Alors toute coupe de G est de cardinal paire.
 \end{prop}
 
-Dans le cas d'un graphe circulaire, tous les sommets sont de degrès deux. Par conséquent, selon la proposition \ref{Parité coupe}\footnote{Trouver un lien vers la démonstration ou la mettre en annexe.}, les bornes inférieures des variables $(z_e)_{e \in E}$ ne sont connues que pour des ensembles paires d'arêtes. En supposant connue la valeur de $z(\delta(U))$ pour tout $U \subseteq V$, peut-on retrouver la valeur de $z_e$ pour tout $e \in E$ ?
+\begin{proof}
+Soit $U \subseteq V$. On note $E[U]$ l'ensemble des arêtes de $E$ ayant leur deux sommets dans $U$.
+$$
+\sum_{v \in U} deg(v) = \sum_{e \in E}\Indic_{\delta(U)}(e)  + 2 \sum_{e \in E}\Indic_{E[U]}(e)
+$$
+Comme $\sum_{v \in U} deg(v)$ et $2 \sum_{e \in E}\Indic_{E[U]}(e)$ sont paires, on en déduit que le cardinal $\sum_{e \in E}\Indic_{\delta(U)}(e)$ d'une coupe est paire.
+\end{proof}
+
+Dans le cas d'un graphe circulaire, tous les sommets sont de degrés deux. Par conséquent, selon la proposition \ref{Parité coupe}, les bornes inférieures des variables $(z_e)_{e \in E}$ ne sont connues que pour des ensembles paires d'arêtes. En supposant connue la valeur de $z(\delta(U))$ pour tout $U \subseteq V$, peut-on retrouver la valeur de $z_e$ pour tout $e \in E$ ?
 
 \begin{lem}\label{Changement de base}
-Soit $G=(V,E)$ un graphe circulaire à $n$ sommets. ($n \ge 3$)
-On considère le système linéaire suivant d'inconnues $(z_e)_{e \in E}$ :
+Soit $G=(V,E)$ un graphe circulaire à $n$ sommets ($n \ge 3$). On considère le système linéaire suivant d'inconnues $(z_e)_{e \in E}$ :
 \begin{gather}\label{Système linéaire complet}
   \sum_{e \in \delta(U)}z_e = z(\delta(U)) \quad \mbox{pour tout } U \subseteq V \mbox{ tel que } U \ne \emptyset
 \end{gather}
@@ -102,7 +107,8 @@ On suppose que le système \ref{Système linéaire complet} possède au moins un
 Alors cette solution est unique.
 \end{lem}
 
-La preuve de ce lemme est constructive. On numérote arbitrairement les arêtes du graphe. Il suffit d'extraire le sous-système suivant :
+\begin{proof}
+La preuve de ce lemme est constructive. On numérote arbitrairement les arêtes du graphe. Il suffit d'extraire le sous-système suivant où chaque colonne représente une arête et où chaque ligne un choix de deux arêtes parmi les $n$ (ie. une coupe) :
 \begin{gather}\label{Système linéaire extrait}
   \left(
   \begin{array}{cccccc}
@@ -134,7 +140,7 @@ La preuve de ce lemme est constructive. On numérote arbitrairement les arêtes 
   \end{array} \right)
 \end{gather}
 
-On note $M_n$ la matrice du sytème \ref{Système linéaire extrait}. En développant par rapport à la première ligne, on obtient :
+On note $M_n$ la matrice du sytème \eqref{Système linéaire extrait}. En développant par rapport à la première ligne, on obtient :
 \begin{gather*}
   \mbox{det }M_n =
   1 \times \mbox{det } \left(
@@ -157,10 +163,10 @@ On note $M_n$ la matrice du sytème \ref{Système linéaire extrait}. En dévelo
   \end{array} \right)
   = 2
 \end{gather*}
-Donc le système \ref{Système linéaire extrait} possède une unique solution.
-\\
+Donc le système \eqref{Système linéaire extrait} possède une unique solution.
+\end{proof}
 
-On peut donner une forme explicite de la solution :
+On peut également donner une forme explicite de la solution :
 \begin{equation}
   \left\{
   \begin{aligned}\notag
@@ -170,4 +176,51 @@ On peut donner une forme explicite de la solution :
   \right.
 \end{equation}
 
-On obtient ainsi une nouvelle base $\bs{\zeta} = (\zeta_i)_{i \in \{1,..,n\}}$. Nous verrons tout l'intérêt d'un tel changement de variable dans le cas du triangle (section \ref{Cas du Triangle}) et dans le cas où les arêtes ont des coûts unitaires (section \ref{}).
+On obtient ainsi une nouvelle base $\bs{\zeta} = (\zeta_i)_{i \in \{1,..,n\}}$. Nous verrons tout l'intérêt d'un tel changement de variable dans le cas du triangle (section \ref{Cas du Triangle}) et pour montrer que la solution du programme mathématique \eqref{PLNE borne inf} relâché est entière (section \ref{Section solution entiere}).
+
+
+\section{Solution entière}
+\label{Section solution entiere}
+
+\begin{prop} \label{Solution entière}
+Pour $n \ge 5$, la solution du programme mathématique \eqref{PLNE borne inf} relâché (ie. avec $z_e \in \RR$ pour tout $e \in E$) est entière.
+\end{prop}
+
+Pour démontrer cette proposition, nous avons besoin du résultat suivant :
+
+\begin{prop} \label{cout union}
+Soit $X$ et $Y$ deux ensembles de sommets disjoints. Alors
+\[z(\delta(X \cup Y)) = z(\delta(X)) + z(\delta(Y)) - 2 z(E[X:Y])\]
+où $E[X:Y]$ désigne l'ensemble des arrêtes ayant un sommet dans $X$ et un sommet dans $Y$.
+\end{prop}
+
+\begin{proof}
+On partitionne $E$ de la manière suivante :\\
+- $E_1$, arêtes ne possédant pas de sommets dans $X$ ou dans $Y$ ;\\
+- $E_2$, arêtes possédant exactement un sommet dans $X$ et sans sommets dans $Y$ ;\\
+- $E_3$, arêtes sans sommets dans $X$ et possédant exactement un sommet dans $Y$ ;\\
+- $E[X:Y]$, arêtes possédant un sommet dans $X$ et un sommet dans $Y$.
+
+Alors :\\
+- $z(\delta(X \cup Y)) = z(E_2) + z(E_3)$.\\
+- $z(\delta(X)) = z(E_2) + z(E[X:Y])$.\\
+- $z(\delta(Y)) = z(E_3) + z(E[X:Y])$.
+
+D'où le résultat.
+\end{proof}
+
+\begin{proof}[Démonstration de la proposition \ref{Solution entière}]
+\begin{figure}[ht]
+  \centering
+  \includegraphics[scale=0.5]{GrapheCirculaire_PreuveSolutionEntiere.jpg}
+  \caption{Notations pour la démonstration de la proposition \ref{Solution entière}}
+  \label{Numerotation aretes parite}
+\end{figure}
+
+On résoud le programme mathématique \eqref{PLNE borne inf} relâché et on note $\bs{z} = (z_e)_{e \in E}$ la solution trouvée. On choisit deux sommets consécutifs $u,v \in U$ tels que $u$ et $v$ soient tout deux différents de $p$ et $q$. Quitte à renuméroter les arêtes, on peut supposer que $e_1 = (u-1,u)$, $e_2 = (u,v)$ et $e_3 = (v,v+1)$. (cf figure \ref{Numerotation aretes parite}.)
+
+Avec les notations introduites dans la section \ref{Changement variables}, on a $\zeta_2~=~z(\delta(u))$ et $\zeta_3~=~z(\delta(v))$ qui sont paires selon la condition d'Euler et $\zeta_1~=~z(\delta({u,v}))$ qui est paire selon la relation de la proposition \ref{cout union}.
+
+\`A l'aide de la forme explicite de la solution du système \eqref{Système linéaire extrait}, on en déduit que $z_1$ est entier, puis par une récurrence immédiate que $z_e$ est entier pour tout $e \in E$.
+\end{proof}
+
