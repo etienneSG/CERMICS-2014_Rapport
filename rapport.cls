@@ -33,6 +33,7 @@
 \usepackage[version=3]{mhchem} %Chimie
 \usepackage{siunitx}  %Utilisation des unités SI
 
+
 %Si vous avez besoin de mettre du code source par exemple:
 % \begin{lstlisting}
 % Put your code here.
@@ -86,6 +87,7 @@
 \newcommand\ZZ{\mathbb{Z}}         %Z de l'ensemble des relatifs
 \newcommand\NN{\mathbb{N}}         %N de l'ensemble des naturels
 \newcommand\Indic{\mathds{1}}      %Fonction indicatrice d'un ensemble
+\newcommand\cE{\mathcal{E}}        %E caligraphié
 \newcommand\bs[1]{\boldsymbol{#1}} %Symbole en gras dans une formule mathématique
 
 %On rédéfinit les chapitres

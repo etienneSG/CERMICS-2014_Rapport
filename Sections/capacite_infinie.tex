@@ -1,9 +1,73 @@
 \chapter{Capacité du camion infinie}
 
-\section{Borne supérieure du coût de la solution optimale}
+Dans tout ce chapitre, on considère un graphe circulaire $G = (V,E)$ à $n$ sommets et muni d'une orientation. On suppose en outre que $p=q$, c'est-à-dire que le point de départ et d'arrivé du camion sont identiques.
+\\
 
-\begin{lem}\emph{Borne supérieure du coût de la solution optimale}\\
-Le coût d'une solution optimale au SSBP est strictement inférieur $\displaystyle 2\sum_{e \in E}c_e$.
+Par soucis de concision, nous nommerons ``algorithme dans le cas linéaire'' l'algorithme permettant d'obtenir le premier mouvement de la solution optimale et le coût d'une telle solution dans le cas où le graphe est une ligne. Cet algorithme est décrit dans l'article \cite{Benchimol2011} en section 8. On rappelle qu'un tel algorithme est linéaire en le nombre de sommet.
+
+\section{Algorithme d'obtention de la solution optimale}
+
+On note $S_{min}$ la meilleure solution réalisable obtenue et on l'initialise avec une solution faisant deux fois le tour du graphe (donc de coût $2\sum_{e \in E}c_e$).
+\\
+
+\textbf{Données initiales.} Le graphe $G$ avec la répartition $\bs{x}$.
+
+\begin{enumerate}
+\item \underline{Pour chaque $e_o \in E$}
+  \begin{enumerate}
+  \item Construire le graphe linéaire obtenu en supprimant l'arrête $e_0$ de $G$.
+  \item Calculer le coût et le premier mouvement de la solution optimale $S$ à l'aide de l'algorithme dans le cas linéaire.
+  \item Si $S$ est réalisable et si $\mbox{Coût}(S) < \mbox{Coût}(S_{min})$, remplacer $S_{min}$ par $S$.
+  \end{enumerate}
+\item \underline{Pour chaque $u \in V$}
+  \begin{enumerate}
+  \item Aller de $p$ à $u$ dans le sens direct en ramassant tous les vélos sur les stations rencontrées.
+  \item Retourner en $p$ dans le sens indirect et poser les vélos.\\
+    On obtient \textbf{le graphe $G$ avec une répartition $\bs{x_1}$}.
+  \item \underline{Premier cas :}\\
+    \textbf{Données initiales.} Le graphe $G$ avec la répartition $\bs{x_1}$.
+    \begin{enumerate}
+    \item Construire le graphe linéaire obtenu en coupant au niveau de la station $p$ et tel que $p$ soit à droite et $q$ à gauche sur une station vide.
+    \item Calculer le coût et le premier mouvement de la solution optimale $S$ à l'aide de l'algorithme dans le cas linéaire.
+    \item Si $S$ est réalisable et si $\mbox{Coût}(S) < \mbox{Coût}(S_{min})$, remplacer $S_{min}$ par $S$.
+    \end{enumerate}
+  \item \underline{Deuxième cas :}\\
+    \textbf{Données initiales.} Le graphe $G$ avec la répartition $\bs{x_1}$.
+    \begin{enumerate}
+    \item Construire le graphe linéaire obtenu en coupant au niveau de la station $p$ et tel que $p$ soit à gauche et $q$ à droite sur une station vide.
+    \item Calculer le coût et le premier mouvement de la solution optimale $S$ à l'aide de l'algorithme dans le cas linéaire.
+    \item Si $S$ est réalisable et si $\mbox{Coût}(S) < \mbox{Coût}(S_{min})$, remplacer $S_{min}$ par $S$.
+    \end{enumerate}
+  \end{enumerate}
+\end{enumerate}
+
+\begin{thm}
+La solution $S_{min}$ retournée à la fin de l'algorithme précédent est une solution réalisable optimale et la complexité de l'algorithme est quadratique en le nombre de sommets du graphe.
+\end{thm}
+
+La suite de ce chapitre va permettre de montrer ce théorème.
+
+\section{Conditions nécessaires pour qu'une solution réalisable soit optimale}
+
+\subsection{Borne supérieure du coût de la solution optimale}
+
+\begin{lem}\label{capacite infinie - borne sup cout}
+\emph{Borne supérieure du coût de la solution optimale}\\
+Si la capacité $C$ du camion est infine et si $p=q$, alors le coût d'une solution optimale du SSBP est strictement inférieur $\displaystyle 2\sum_{e \in E}c_e$.
 \end{lem}
 
-\textit{Preuve :} Il suffit d'aller de $p$ à $p-1$ dans le sens positif en prenant tous les vélos sur chaque station (y compris en $p$). Tous les vélos du modèle sont alors dans le camion et toutes les stations sont vides. Puis il suffit de revenir de $p-1$ à $p$ dans le sens négatif en posant sur chaque station le nombre de vélo nécessaire pour l'équilibrer.
+\begin{proof}
+Il suffit d'aller de $p$ à $p-1$ dans le sens positif en prenant tous les vélos sur chaque station (y compris en $p$). Tous les vélos du modèle sont alors dans le camion et toutes les stations sont vides. Puis il suffit de revenir de $p-1$ à $p$ dans le sens négatif en posant sur chaque station le nombre de vélo nécessaire pour l'équilibrer.
+\end{proof}
+
+En pratique, une capacité infinie signifie que la capacité du camion est supérieure au nombre total de vélos sur le graphe.
+
+\subsection{Restriction du nombre de passages sur une arête particulière}
+
+\begin{prop}
+On suppose que la capacité $C$ du camion est infine et que $p=q$. Soit $S$ une solution optimale du SSBP. Alors il existe une arrête $e_0 \in E$ tel que le camion passe au plus une fois par $e_0$.
+\end{prop}
+
+\begin{proof}
+Par l'absurde, on suppose que pour tout $e \in E$, le camion passe au moins deux fois sur $e$. Alors le coût de la solution optimale est supérieur à $2\sum_{e \in E}c_e$ ce qui contredit le lemme \ref{capacite infinie - borne sup cout}.
+\end{proof}

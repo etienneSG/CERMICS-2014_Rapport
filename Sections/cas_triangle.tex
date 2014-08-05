@@ -1,7 +1,46 @@
 \chapter{Cas du triangle}
 \label{Cas du Triangle}
 
-\section{Rappel des notations et des hypothèses}
+\section{Algorithme d'obtention de la solution optimale}
+\label{Algo optimal cas triangulaire}
+
+Règles permettant de trouver le premier mouvement d'une solution optimale
+\begin{easylist}[articletoc]
+& Toutes les stations sont équilibrées.
+&& \underline{$p \ne q$}
+
+   Aller de $p$ à $q$.
+&& \underline{$p = q$}
+
+   Ne pas bouger (c'est fini).
+& Il existe une station non-équlibrée.
+&& \underline{$p$ est équilibrée ou en défaut.}
+
+    Aller sur une station en excès sans emporter de vélos.
+&& \underline{$p$ est en excès}
+&&& \underline{$x(p)-y(p) \ge C$.}
+
+    Prendre C vélos et les déposer sur une station en défaut différente de $q$ s'il en existe, sur $q$ sinon.
+&&& \underline{$x(p)-y(p) < C$.}
+
+    Prendre $x(p)-y(p)$ vélos.
+&&&& \underline{Les deux autres stations sont en défaut.}
+
+     Déposer les vélos pris sur une station différentes de $q$.
+&&&& \underline{Une seule autre station est en défaut.}
+
+     On note $r$ la troisième station en excès ou équilibrée\\
+     et $\cE = x(r) - y(r) \pmod{C}$ avec $1 \le \cE \le C$.
+&&&&& \underline{$x(p)-y(p)+\cE > C$.}
+
+      Aller sur la station en défaut et déposer les vélos.
+
+&&&&& \underline{$x(p)-y(p)+\cE \le C$.}
+
+      Aller sur la station en excès et déposer les vélos.
+\end{easylist}
+
+\section{Optimalité de l'algorithme précédent}
 
 \begin{figure}[ht]
   \label{Notation graphe triangulaire}
@@ -49,7 +88,7 @@ En remplaçant dans la fonction objectif, on obtient :
   + \frac{1}{2} \displayUB{ \left(c_1 + c_2 - c_3 \right) }{>0} \zeta_2
   + \frac{1}{2} \displayUB{ \left(-c_1 + c_2 + c_3\right) }{>0} \zeta_3 >0
 \end{equation}
-Les coefficients des $\zeta_i$ sont positifs à cause de l'hytohèse d'inégalité triangulaire\footnote{cf section \ref{sec: Inégalité triangulaire}}.
+Les coefficients des $\zeta_i$ sont positifs à cause de l'hytohèse d'inégalité triangulaire évoquée en section \ref{sec: Inégalité triangulaire}.
 \\
 
 Pour un sommet $v \in V$, on définit $U_v$ par $\{v\}$ si $v$ est en excès ou équilibré et par $\overline{\{v\}}$ sinon. On définit également
@@ -57,60 +96,22 @@ Pour un sommet $v \in V$, on définit $U_v$ par $\{v\}$ si $v$ est en excès ou 
 \zeta_v(p,q,\bs{x},\bs{y}) = \mbox{max} \left( 2 \left\lceil \frac{x(U_v)-y(U_v)}{C} \right\rceil\ + \eta(p,q,U_v), \mu(p,q,U_v,\bs{x},\bs{y}) \right)
 \]
 
-\section{Algorithme d'obtention de la solution optimale}
+\begin{thm}\label{Optimalite algo graphe triangulaire}
+\emph{Optimalité de l'algorithme \ref{Algo optimal cas triangulaire}}
 
-Règles permettant de trouver le premier mouvement d'une solution optimale
-\begin{easylist}[articletoc]
-& Toutes les stations sont équilibrées.
-&& \underline{$p \ne q$}
-
-   Aller de $p$ à $q$.
-&& \underline{$p = q$}
-
-   Ne pas bouger (c'est fini).
-& Il existe une station non-équlibrée.
-&& \underline{$p$ est équilibrée ou en défaut.}
-
-    Aller sur une station en excès sans emporter de vélos.
-&& \underline{$p$ est en excès}
-&&& \underline{$x(p)-y(p) \ge C$.}
-
-    Prendre C vélos et les déposer sur une station en défaut différente de $q$ si possible, sur $q$ sinon.
-&&& \underline{$x(p)-y(p) < C$.}
-
-    Prendre $x(p)-y(p)$ vélos.
-&&&& \underline{Les deux autres stations sont en défaut.}
-
-     Déposer les vélos pris sur une station différentes de $q$.
-&&&& \underline{Une seule autre station est en défaut.}
-
-     On note $r$ la troisième station en excès ou équilibrée\\
-     et $Ex = x(r) - y(r) \pmod{C}$ avec $1 \le Ex \le C$.
-&&&&& \underline{$x(p)-y(p)+Ex > C$.}
-
-      Aller sur la station en défaut et déposer les vélos.
-
-&&&&& \underline{$x(p)-y(p)+Ex \le C$.}
-
-      Aller sur la station en excès et déposer les vélos.
-\end{easylist}
-
-\begin{thm}
-\emph{Optimalité de l'algorithme précédent}
-
-L'algorithme précédent donne le premier mouvement d'une solution optimale et le coût de cette solution est donnée par :
+L'algorithme précédent donne le premier mouvement d'une solution optimale et le coût de cette solution est donnée par
 \[
 \frac{1}{2} \left(c_1 - c_2 + c_3 \right) \zeta_1(p,q,\bs{x},\bs{y})
 + \frac{1}{2} \left(c_1 + c_2 - c_3 \right) \zeta_2(p,q,\bs{x},\bs{y})
-+ \frac{1}{2} \left(-c_1 + c_2 + c_3\right) \zeta_3(p,q,\bs{x},\bs{y})
++ \frac{1}{2} \left(-c_1 + c_2 + c_3\right) \zeta_3(p,q,\bs{x},\bs{y}).
 \]
 \end{thm}
 
-\section{Preuve de l'algorithme précédent}
+\section{Preuve de l'optimalité de l'algorithme}
 
-\textbf{$\bs{/!\backslash}$ Il manque un bout à faire \underline{proprement} avec F. Meunier.$\bs{/!\backslash}$}\\ (Si on a la formule de récurrence \ref{Récurrence triangle}, alors, on a bien le résultat de l'algorithme.)
+Les coefficients des $\zeta_v$ étant positifs, il suffit de montrer que les $\zeta_v$ atteignent leur borne inférieure pour montrer que l'on a minimisé le coût de la solution. Si l'on montre que pour tout sommet $v \in V$, on a $\zeta_v = \zeta_v(p,q,\bs{x},\bs{y})$ à chaque étape de l'algorithme, alors, par défnition de $\zeta_v(p,q,\bs{x},\bs{y})$,  $\zeta_v$ sera bien égal à sa borne inférieure.
 
-Montrons que :
+Il suffit donc de montrer l'égalité suivante pour tout $v \in V$
 \begin{gather} \label{Récurrence triangle}
   \zeta_v(p,q,\bs{x},\bs{y}) = \left\{
   \begin{array}{ll}
@@ -119,11 +120,14 @@ Montrons que :
   \end{array}
   \right.
 \end{gather}
-Dans chacun des différents cas, l'égalité \ref{Récurrence triangle} est évidente dans le cas où $v \ne p$ et où $v \ne p'$.
+Nous allons effectuer cette démonstration par récurrence sur les mouvements du camion.
+\\
+
+Dans chacun des différents cas, l'égalité \eqref{Récurrence triangle} est évidente dans le cas où $v \ne p$ et où $v \ne p'$.
 
 \subsection*{Cas 1.1 et 1.2}
 
-L'égalité \ref{Récurrence triangle} est évidente dans ce cas.
+L'égalité \eqref{Récurrence triangle} est évidente dans ce cas.
 
 \subsection*{Cas 2.1}
 
@@ -515,7 +519,7 @@ Donc $\zeta_{p'}(p,q,\bs{x},\bs{y}) = 1 + \zeta_{p'}(p',q,\bs{x'},\bs{y})$.
 \item $r$ en excès ou équilibrée
 \item on transporte $x(p)-y(p)$ vélos
 \item $x(p)-y(p) < C$
-\item $x(p) - y(p) + Ex > C$
+\item $x(p) - y(p) + \cE > C$
 \end{itemize}
 \end{minipage}
 \begin{minipage}{0.5\linewidth}
@@ -570,18 +574,18 @@ Donc $\zeta_{p'}(p,q,\bs{x},\bs{y}) = 1 + \zeta_{p'}(p',q,\bs{x'},\bs{y})$.
 Donc $\zeta_p(p,q,\bs{x},\bs{y}) = 1 + \zeta_p(p',q,\bs{x'},\bs{y})$.
 \\
 
-On note $\gamma \in \NN \cup \{-1\}$ l'entier tel que $x(r)-y(r)=\gamma. C + Ex$. Alors :
+On note $\gamma \in \NN \cup \{-1\}$ l'entier tel que $x(r)-y(r)=\gamma. C + \cE$. Alors :
 \[
 2 \left\lceil \frac{x(U_{p'})-y(U_{p'})}{C} \right\rceil
 = 2 \left\lceil \frac{x(p)-y(p)+x(r)-y(r)}{C} \right\rceil
-= 2 \left\lceil \frac{x(p)-y(p)+\gamma. C + Ex}{C} \right\rceil
+= 2 \left\lceil \frac{x(p)-y(p)+\gamma. C + \cE}{C} \right\rceil
 = 2\gamma + 4
 \]
 \[
 2 \left\lceil \frac{x'(U_{p'})-y(U_{p'})}{C} \right\rceil
 = 2 \left\lceil \frac{x'(p)-y(p)+x'(r)-y(r)}{C} \right\rceil
 = 2 \left\lceil \frac{x(r)-y(r)}{C} \right\rceil
-= 2 \left\lceil \frac{\gamma. C + Ex}{C} \right\rceil
+= 2 \left\lceil \frac{\gamma. C + \cE}{C} \right\rceil
 = 2\gamma + 2
 \]
 De plus, $\gamma = -1$ si et seulement si $r$ est équilibrée.
@@ -670,7 +674,7 @@ Donc $\zeta_{p'}(p,q,\bs{x},\bs{y}) = 1 + \zeta_{p'}(p',q,\bs{x'},\bs{y})$.
 \item la troisième station est en défaut
 \item on transporte $x(p)-y(p)$ vélos
 \item $x(p)-y(p) < C$
-\item $x(p) - y(p) + Ex \le C$
+\item $x(p) - y(p) + \cE \le C$
 \end{itemize}
 \end{minipage}
 \begin{minipage}{0.5\linewidth}
@@ -725,17 +729,17 @@ Donc $\zeta_{p'}(p,q,\bs{x},\bs{y}) = 1 + \zeta_{p'}(p',q,\bs{x'},\bs{y})$.
 Donc $\zeta_p(p,q,\bs{x},\bs{y}) = 1 + \zeta_p(p',q,\bs{x'},\bs{y})$.
 \\
 
-On note $\gamma \in \NN \cup \{-1\}$ l'entier tel que $x(p')-y(p') = x(r)-y(r) = \gamma. C + Ex$. Alors :
+On note $\gamma \in \NN \cup \{-1\}$ l'entier tel que $x(p')-y(p') = x(r)-y(r) = \gamma. C + \cE$. Alors :
 \[
 2 \left\lceil \frac{x(U_{p'})-y(U_{p'})}{C} \right\rceil
 = 2 \left\lceil \frac{x(p')-y(p')}{C} \right\rceil
-= 2 \left\lceil \frac{\gamma. C + Ex}{C} \right\rceil
+= 2 \left\lceil \frac{\gamma. C + \cE}{C} \right\rceil
 = 2\gamma + 2
 \]
 \[
 2 \left\lceil \frac{x'(U_{p'})-y(U_{p'})}{C} \right\rceil
 = 2 \left\lceil \frac{x'(p')-y(p')}{C} \right\rceil
-= 2 \left\lceil \frac{x(p)-y(p)+\gamma. C + Ex}{C} \right\rceil
+= 2 \left\lceil \frac{x(p)-y(p)+\gamma. C + \cE}{C} \right\rceil
 = 2\gamma + 2
 \]
 De plus, si $\gamma = -1$, alors $p'$ est équilibré ou en défaut, ce qui est faux. Donc $\gamma \ge 0$
@@ -786,4 +790,4 @@ De plus, si $\gamma = -1$, alors $p'$ est équilibré ou en défaut, ce qui est 
 Donc $\zeta_{p'}(p,q,\bs{x},\bs{y}) = 1 + \zeta_{p'}(p',q,\bs{x'},\bs{y})$.
 \\
 
-Dans chacun des cas de l'algorithme, l'égalité \ref{Récurrence triangle} est donc vérifiée.
+Dans chacun des cas de l'algorithme, l'égalité \eqref{Récurrence triangle} est donc vérifiée.
