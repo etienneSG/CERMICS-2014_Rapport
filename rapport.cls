@@ -25,6 +25,10 @@
 \usepackage{enumitem}
 \usepackage[ampersand]{easylist}
 
+%Pour souligner sur plusieurs lignes
+\usepackage{ulem}
+\normalem
+
 %Pour mettre des liens dans le fichier
 \usepackage[xetex,colorlinks=true,pdfmenubar=false,pdfpagemode=UseNone,urlcolor=black,linkcolor=black,citecolor=black,filecolor=black,pdfstartview=FitH]{hyperref}
 
