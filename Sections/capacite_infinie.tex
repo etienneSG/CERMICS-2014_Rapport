@@ -6,43 +6,92 @@ Dans tout ce chapitre, on considère un graphe circulaire $G = (V,E)$ à $n$ som
 Par soucis de concision, nous nommerons ``algorithme dans le cas linéaire'' l'algorithme permettant d'obtenir le premier mouvement de la solution optimale et le coût d'une telle solution dans le cas où le graphe est une ligne. Cet algorithme est décrit dans l'article \cite{Benchimol2011} en section 8. On rappelle qu'un tel algorithme est linéaire en le nombre de sommet.
 
 \section{Algorithme d'obtention de la solution optimale}
+\label{Algorithme circulaire infini}
 
 On note $S_{min}$ la meilleure solution réalisable obtenue et on l'initialise avec une solution faisant deux fois le tour du graphe (donc de coût $2\sum_{e \in E}c_e$).
+
+La première partie de l'algorithme va comparer le coût de différentes solutions réalisables sans en calculer le premier mouvement, et une fois la solution optimale $S_{min}$ trouvée, la deuxième partie de l'algorithme donnera les mouvements successifs à faire.
 \\
 
-\textbf{Données initiales.} Le graphe $G$ avec la répartition $\bs{x}$.
-
+\textbf{Calcul du coût de la solution optimale et de ses caractéristiques :}
 \begin{enumerate}
-\item \uline{Pour chaque $e_o \in E$}\label{Ze0 nul}
+\item\label{Ze0 nul} \uline{Pour chaque $e_o \in E$}
   \begin{enumerate}
-  \item Construire le graphe linéaire obtenu en supprimant l'arrête $e_0$ de $G$.
-  \item Calculer le coût et le premier mouvement de la solution optimale $S$ à l'aide de l'algorithme dans le cas linéaire.
-  \item Si $S$ est réalisable et si $\mbox{Coût}(S) < \mbox{Coût}(S_{min})$, remplacer $S_{min}$ par $S$.
+  \item Construire le graphe linéaire $\bs{G(e_0)}$ obtenu en supprimant l'arrête $e_0$ de $G$.
+  \item Calculer le coût de la solution optimale $S$ à l'aide de l'algorithme dans le cas linéaire.
+  \item Si $\Upsilon_{G(e_0)} < \mbox{Coût}(S_{min})$, remplacer les caractéristiques de $S_{min}$ par celles de $S$ (c'est-à-dire son coût et l'arête $e_0$).
   \end{enumerate}
-\item \uline{Pour chaque $u \in V$}\label{Ze0 unitaire}
+\item\label{Ze0 unitaire} \uline{Pour chaque $w \in V$, pour chaque $w' \in ]w,o]_+$}
   \begin{enumerate}
-  \item Aller de $p$ à $u$ dans le sens direct en ramassant tous les vélos sur les stations rencontrées.
-  \item Retourner en $p$ dans le sens indirect et poser les vélos.\\
-    On obtient \textbf{le graphe $G$ avec une répartition $\bs{x_1}$}.
-  \item \uline{Premier cas :}\\
-    \textbf{Données initiales.} Le graphe $G$ avec la répartition $\bs{x_1}$.
+  \item \uline{Premier cas : sens direct}
     \begin{enumerate}
-    \item Construire le graphe linéaire obtenu en coupant au niveau de la station $p$ et tel que $p$ soit à droite et $q$ à gauche sur une station vide.
-    \item Calculer le coût et le premier mouvement de la solution optimale $S$ à l'aide de l'algorithme dans le cas linéaire.
-    \item Si $S$ est réalisable et si $\mbox{Coût}(S) < \mbox{Coût}(S_{min})$, remplacer $S_{min}$ par $S$.
+    \item\label{Ze0 unitaire - direct} Construire le graphe linéaire $\bs{G(w,w',+)}$ obtenu en supprimant les arêtes $E\left[ \left[w',w\right]_+ \right]$ avec :
+      \begin{itemize}
+      \item $p=w$ et $q=w'$
+      \item $x_1(w) = \sum_{v \in E\left[ \left[w',w\right]_+ \right]} x(v)$ et $y_1(w) = 0$
+      \item $x_1(w') = 0$ et $y_1(w') = \sum_{v \in E\left[ \left[w',w\right]_+ \right]} y(v)$
+      \end{itemize}
+    \item Calculer le coût $\Upsilon_{G(w,w',+)}$ de sa solution optimale.
+    \item Si $\Upsilon_{G(w,w',+)} + 3 \sum_{ v \in E\left[ \left[w',w\right]_+ \right] }c_v < \mbox{Coût}(S_{min})$, remplacer les caractéristiques de $S_{min}$ par celles de $S$ (c'est-à-dire son coût et le triplet $(w,w',+)$).
     \end{enumerate}
-  \item \uline{Deuxième cas :}\\
-    \textbf{Données initiales.} Le graphe $G$ avec la répartition $\bs{x_1}$.
+  \item\label{Ze0 unitaire - indirect} \uline{Deuxième cas : sens indirect}
     \begin{enumerate}
-    \item Construire le graphe linéaire obtenu en coupant au niveau de la station $p$ et tel que $p$ soit à gauche et $q$ à droite sur une station vide.
-    \item Calculer le coût et le premier mouvement de la solution optimale $S$ à l'aide de l'algorithme dans le cas linéaire.
-    \item Si $S$ est réalisable et si $\mbox{Coût}(S) < \mbox{Coût}(S_{min})$, remplacer $S_{min}$ par $S$.
+    \item Construire le graphe linéaire $\bs{G(w,w',-)}$ obtenu en supprimant les arêtes $E\left[ \left[w',w\right]_+ \right]$ avec :
+      \begin{itemize}
+      \item $p=w'$ et $q=w$
+      \item $x_1(w') = \sum_{v \in E\left[ \left[w',w\right]_+ \right]} x(v)$ et $y_1(w') = 0$
+      \item $x_1(w) = 0$ et $y_1(w) = \sum_{v \in E\left[ \left[w',w\right]_+ \right]} y(v)$
+      \end{itemize}
+    \item Calculer le coût $\Upsilon_{G(w,w',-)}$ de sa solution optimale.
+    \item Si $\Upsilon_{G(w,w',-)} + 3 \sum_{ v \in E\left[ \left[w',w\right]_+ \right] }c_v < \mbox{Coût}(S_{min})$, remplacer les caractéristiques de $S_{min}$ par celles de $S$ (c'est-à-dire son coût et le triplet $(w,w',-)$).
     \end{enumerate}
   \end{enumerate}
 \end{enumerate}
 
-\begin{thm}
-La solution $S_{min}$ retournée à la fin de l'algorithme précédent est une solution réalisable optimale et la complexité de l'algorithme est quadratique en le nombre de sommets du graphe.
+\textbf{Calcul de la solution optimale :}
+\begin{enumerate}
+\item\label{Calcul mvt - Ze0 nul} Si $S_{min}$ est caractérisée par une arête $e_0$.
+  \begin{enumerate}
+  \item Construire le graphe linéaire $\bs{G(e_0)}$.
+  \item Calculer les mouvements successifs de la solution optimale à l'aide de l'algorithme dans le cas linéaire sur le graphe $\bs{G(e_0)}$.
+  \end{enumerate}
+\item\label{Calcul mvt - Ze0 unitaire - direct} Si $S_{min}$ est caractérisée par un triplet $(w,w',+)$.
+  \begin{enumerate}
+  \item démarrer en $p$.
+  \item aller jusqu'à $w'$ dans le sens négatif.
+  \item aller jusqu'à $w$ dans le sens positif en ramassant tous les vélos présents sur le chemin.
+  \item Construire le graphe linéaire $\bs{G(w,w',+)}$.
+  \item Calculer les mouvements successifs de la solution optimale à l'aide de l'algorithme dans le cas linéaire sur le graphe $\bs{G(w,w',+)}$.
+  \item aller jusqu'à $w$ dans le sens positif en équilibrant toutes les stations parcourues.
+  \item revenir en $p$ dans le sens négatif.
+  \end{enumerate}
+\item\label{Calcul mvt - Ze0 unitaire - indirect} Si $S_{min}$ est caractérisée par un triplet $(w,w',-)$.
+  \begin{enumerate}
+  \item démarrer en $p$.
+  \item aller jusqu'à $w$ dans le sens positif.
+  \item aller jusqu'à $w'$ dans le sens négatif en ramassant tous les vélos présents sur le chemin.
+  \item Construire le graphe linéaire $\bs{G(w,w',-)}$.
+  \item Calculer les mouvements successifs de la solution optimale à l'aide de l'algorithme dans le cas linéaire sur le graphe $\bs{G(w,w',-)}$.
+  \item aller jusqu'à $w'$ dans le sens négatif en équilibrant toutes les stations parcourues.
+  \item revenir en $p$ dans le sens positif.
+  \end{enumerate}
+\end{enumerate}
+
+
+\begin{thm} \label{thm: optimalité algo infini}
+La solution $S_{min}$ retournée à la fin de l'algorithme précédent est une solution réalisable optimale et la complexité de l'algorithme est cubique en le nombre de sommets du graphe.
+
+De plus, le coût de la solution optimale est donnée par
+$$
+\Upsilon_{G} = \min
+\left(
+  \min_{e \in E} \Upsilon_{G(e)}\,,\,
+  \min_{w \in V, w' \in ]w,o]}
+  \left(
+    3 \sum_{ v \in E\left[ \left[w',w\right]_+ \right] }c_v + \min \left( \Upsilon_{G(w,w',+)} \,,\, \Upsilon_{G(w,w',-)} \right)
+  \right)
+\right).
+$$
 \end{thm}
 
 La suite de ce chapitre va permettre de montrer ce théorème.
@@ -123,7 +172,7 @@ Soit $G=(V,E)$ un graphe circulaire. On suppose que la capacité $C$ du camion e
 
 \begin{proof}\uline{$1^{\mbox{er}}$ cas} : \uline{il existe $e_0 \in E$ tel que le camion ne passe pas par $e_0$.}
 
-Pour $e_0 \in E$, selon la proposition \ref{Ze inf 3 - lineaire}, la solution optimale sous contrainte $z_{e_0}=0$ passe au plus trois fois par chaque arête.
+Le calcul de la solution optimale se ramène au cas du graphe linéaire $G(e_0)$ obtenu en supprimant l'arête $e_0$ du graphe $G$. Selon la proposition \ref{Ze inf 3 - lineaire}, la solution optimale passe au plus trois fois par chaque arête de $G(e_0)$ donc de $G$.
 \\
 
 \uline{$2^{\mbox{ème}}$ cas} : \uline{le camion passe au moins une fois par tous les sommets et il existe $e_0 \in E$ tel que le camion passe exactement une fois par $e_0$.}
@@ -137,18 +186,55 @@ Alors, on peut toujours construire une solution optimale $S'$ comme suit :
 \item\label{NewS1} démarrer en $o$.
 \item\label{NewS2} aller jusqu'à $w'$ dans le sens négatif.
 \item\label{NewS3} aller jusqu'à $w$ dans le sens positif en ramassant tous les vélos présents sur le chemin.
-\item\label{NewS4} équilibrer la portion $[w,w']_+$ à l'aide de l'algorithme du cas linéaire en prenant :
+\item\label{NewS4} équilibrer la portion $[w,w']_+$ à l'aide de l'algorithme du cas linéaire sur le graphe $G(w,w',+)$ obtenu à partir de $G$ en supprimant les arêtes $E\left[[w,w']_+\right]$ et tel que :
   \begin{itemize}
   \item $p=w$ et $q=w'$
-  \item $\displaystyle x_1(w) = \sum_{v \in E\left[ \left[w,w'\right]_+ \right]} x(v)$ et $y_1(w) = 0$
-  \item $x_1(w') = 0$ et $\displaystyle y_1(w') = \sum_{v \in E\left[ \left[w,w'\right]_+ \right]} y(v)$
+  \item $\displaystyle x_1(w) = \sum_{v \in E\left[ \left[w',w\right]_+ \right]} x(v)$ et $y_1(w) = 0$
+  \item $x_1(w') = 0$ et $\displaystyle y_1(w') = \sum_{v \in E\left[ \left[w',w\right]_+ \right]} y(v)$
   \end{itemize}
 \item\label{NewS5} aller jusqu'à $w$ dans le sens positif en équilibrant toutes les stations parcourues.
-\item\label{NewS6} revenir en o dans le sens négatif.
+\item\label{NewS6} revenir en $o$ dans le sens négatif.
 \end{enumerate}
 Il reste à démontrer que $S'$ équilibre bien le graphe et que $\mbox{Coût}(S') \le \mbox{Coût}(S)$.
+\\
 
-\`A l'étape \ref{NewS4}, tous les vélos sont présent dans la portion $[w,w']_+$. La résolution à l'aide de l'algorithme du cas linéaire sur le graphe extrait $[w,w'[_+$ avec $p=w$ et $q=w'$ permet donc d'équilibrer la portion de graphe avec au plus trois passages sur chaque arête de $[w,w']_+$.
+\uline{Montrons que $S'$ équilibre bien le graphe.}
 
-\`A la fin de l'étape \ref{NewS4}, les stations de la portion $]w,w'[_+$ sont équilibrées et celles de la portion $[w',w]_+$ sont vides et tous les vélos nécessaires pour l'équilibrer sont sur $w'$. L'étape \ref{NewS5} permet donc bien d'équilibrer les stations de $[w',w]_+$ et l'étape \ref{NewS6} de revenir en $o$. En outre, par construction de $w$ et $w'$ la solution $S$ passait au moins trois fois par chaque arête de $[w',w]_+$. Or $S'$ passe exactement trois fois par chaque arête de $[w',w]_+$.
+\`A l'étape \ref{NewS4}, tous les vélos sont présent dans la portion $[w,w']_+$. La résolution à l'aide de l'algorithme du cas linéaire sur le graphe extrait décrit ci-dessus permet donc d'équilibrer la portion de graphe avec au plus trois passages sur chaque arête de $E\left[[w,w']_+\right]$ (cf Proposition \ref{Ze inf 3 - lineaire}).
+
+\`A la fin de l'étape \ref{NewS4}, les stations de la portion $]w,w'[_+$ sont équilibrées et celles de la portion $[w',w]_+$ sont vides et tous les vélos nécessaires pour l'équilibrer sont sur $w'$. L'étape \ref{NewS5} permet donc bien d'équilibrer les stations de $[w',w]_+$ et l'étape \ref{NewS6} de revenir en $o$.
+\\
+
+\uline{Montrons que $\mbox{Coût}(S') \le \mbox{Coût}(S)$.}
+
+Par construction de $w$ et $w'$ la solution $S$ passait au moins trois fois par chaque arête de $[w',w]_+$. Or $S'$ passe exactement trois fois par chaque arête de $[w',w]_+$. Donc $z_e' \le z_e$ pour tout $e \in E\left[ \left[w',w\right]_+\right]$.
+
+On s'intéresse à la solution $S$. On suppose qu'une fois le camion rentré dans $]w,w'[_+$, il retourne dans $[w',w]_+$ en entrant par $w$.\\
+- S'il revenait pour prendre des vélos, il aurait pu le faire avant d'entrer dans $]w,w'[_+$.\\
+- S'il venait pour poser des vélos, il pourrait le faire après être sorti de $]w,w'[_+$.
+
+On suppose qu'une fois le camion sorti de $]w,w'[_+$, il retourne dans $[w',w]_+$ en entrant par $w'$.\\
+- S'il revenait pour prendre des vélos, il aurait pu le faire avant de sortir de $]w,w'[_+$.\\
+- S'il venait pour poser des vélos, il aurait pu les prendre avant d'entrer dans $]w,w'[_+$ et les poser une fois à l'intérieur de $]w,w'[_+$.
+
+On en déduit que la solution $S$ équilibre la portion $]w,w'[_+$ comme s'il s'agissait du graphe linéaire $G(w,w',+)$ décrit ci-dessus.
+Donc le coût pour équilibrer $]w,w'[_+$ dans $S$ et dans $S'$ est le même.
+
+On en déduit que $\mbox{Coût}(S') \le \mbox{Coût}(S)$ et donc que $S'$ est optimale et réalisable.
+
+Par construction, $S'$ passe au plus trois fois par chaque arête, ce qui conclut la démonstration.
 \end{proof}
+
+\section{Preuve de l'optimalité de l'algorithme}
+
+Comme le calcul du coût d'une solution optimale dans le cas d'un graphe linéaire est linéaire en le nombre de sommet, il est évident que l'algorithme décrit en section \ref{Algorithme circulaire infini} est cubique en le nombre de sommet $n$ du graphe $G$.
+
+De plus, il est évident que :
+\begin{itemize}
+\item $\min_{e \in E} \Upsilon_{G(e)}$ donne le coût de la meilleure solution retourné dans la partie \ref{Calcul mvt - Ze0 nul}.
+\item $\min_{w \in V, w' \in ]w,o]} \left(3 \sum_{ v \in E\left[ \left[w',w\right]_+ \right] }c_v + \Upsilon_{G(w,w',+)}\right)$ donne le coût de la meilleure solution retourné dans la partie \ref{Calcul mvt - Ze0 unitaire - direct}.
+\item $\min_{w \in V, w' \in ]w,o]} \left(3 \sum_{ v \in E\left[ \left[w',w\right]_+ \right] }c_v + \Upsilon_{G(w,w',-)}\right)$ donne le coût de la meilleure solution retourné dans la partie \ref{Calcul mvt - Ze0 unitaire - indirect}.
+\end{itemize}
+Donc la formule donnée dans le théorème \ref{thm: optimalité algo infini} donne bien le coût de la meilleure solution retournée par l'algorithme.
+
+Il reste à montrer que l'algorithme renvoie bien une solution optimale.

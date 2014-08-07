@@ -11,13 +11,13 @@ On se donne un graphe $G=(V,E)$ circulaire à $n$ sommets et un coût $\bs{c} \i
 
 En effet, supposons qu'il existe $e' \in E$ tel que $c_{e'} \ge \sum_{e \in E \backslash \{e'\}} c_e$.
 
-On se donne une solution optimale $(z_e)_{e \in E}$. On note $P = \sum_{e \in E} c_ez_e$ le coût d'une telle solution. On construit alors la séquence de mouvement $(z'_e)_{e \in E}$ par le procédé suivant : chaque passage par l'arête $e'$ est remplacé par un passage sur les autres arêtes avec le même nombre de vélos. Autrement dit, ``on fait le tour dans l'autre sens''. On note $P'$ le coût d'une telle séquence. On a alors :
+On se donne une solution optimale $(z_e)_{e \in E}$. Le coût d'une telle solution s'écrit $\Gamma_{G}~=~\sum_{e \in E}~c_ez_e$. On construit alors la séquence de mouvement $(z'_e)_{e \in E}$ par le procédé suivant : chaque passage par l'arête $e'$ est remplacé par un passage sur les autres arêtes avec le même nombre de vélos. Autrement dit, ``on fait le tour dans l'autre sens''. On note $\Gamma'$ le coût d'une telle séquence. On a alors :
 \begin{align*}
-  P' &= \sum_{e \in E \backslash \{e'\}} c_e (z_e + z_{e'}) = \sum_{e \in E \backslash \{e'\}} c_ez_e + \left(\sum_{e \in E \backslash \{e'\}} c_{e}\right)z_{e'} \\
-     &\le \sum_{e \in E \backslash \{e'\}} c_ez_e + c_{e'}z_{e'} = P
+  \Gamma' &= \sum_{e \in E \backslash \{e'\}} c_e (z_e + z_{e'}) = \sum_{e \in E \backslash \{e'\}} c_ez_e + \left(\sum_{e \in E \backslash \{e'\}} c_{e}\right)z_{e'} \\
+     &\le \sum_{e \in E \backslash \{e'\}} c_ez_e + c_{e'}z_{e'} = \Gamma_{G}
 \end{align*}
 
-Par conséquent, il existe une solution au moins aussi bonne ne passant pas par $e'$.
+Par conséquent, il existe une solution au moins aussi bonne ne passant pas par $e'$. Pour obtenir la solution optimale, il suffit alors de résoudre le cas du graphe linéaire sur le graphe $G'$ obtenu en supprimant l'arête $e'$ du graphe $G$.
 
 \section{Borne inférieure de la solution optimale (valable pour un graphe quelconque)}
 \label{Borne inf générale}
