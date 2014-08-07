@@ -1,6 +1,6 @@
 \chapter{Capacité du camion infinie}
 
-Dans tout ce chapitre, on considère un graphe circulaire $G = (V,E)$ à $n$ sommets et muni d'une orientation. On suppose en outre que $p=q$, c'est-à-dire que le point de départ et d'arrivé du camion sont identiques.
+Dans tout ce chapitre, on considère un graphe circulaire $G = (V,E)$ à $n$ sommets et muni d'une orientation. On suppose en outre que $p=q$, c'est-à-dire que le point de départ et d'arrivé du camion sont identiques. Enfin, on considère un camion de capacité $C$ infinie c'est-à-dire de capacité supérieure à la somme totale des vélos présents sur le graphe.
 \\
 
 Par soucis de concision, nous nommerons ``algorithme dans le cas linéaire'' l'algorithme permettant d'obtenir le premier mouvement de la solution optimale et le coût d'une telle solution dans le cas où le graphe est une ligne. Cet algorithme est décrit dans l'article \cite{Benchimol2011} en section 8. On rappelle qu'un tel algorithme est linéaire en le nombre de sommet.
@@ -109,8 +109,6 @@ Si la capacité $C$ du camion est infine et si $p=q$, alors le coût d'une solut
 Il suffit d'aller de $p$ à $p-1$ dans le sens positif en prenant tous les vélos sur chaque station (y compris en $p$). Tous les vélos du modèle sont alors dans le camion et toutes les stations sont vides. Puis il suffit de revenir de $p-1$ à $p$ dans le sens négatif en posant sur chaque station le nombre de vélo nécessaire pour l'équilibrer.
 \end{proof}
 
-En pratique, une capacité infinie signifie que la capacité du camion est supérieure au nombre total de vélos sur le graphe.
-
 \subsection{Parité des $z_e$}
 
 \begin{prop}\label{parité des Ze}
@@ -123,6 +121,7 @@ Soit $e \in E$. Selon la condition d'Euler, $z(\{e, e+1\}) = z_e + z_{e+1}$ est 
 \end{proof}
 
 \subsection{Restriction du nombre de passages sur une arête particulière}
+\label{e0 nul ou unitaire}
 
 \begin{prop}
 On suppose que la capacité $C$ du camion est infine et que $p=q$. Soit $S$ une solution optimale du SSBP. Alors il existe une arrête $e_0 \in E$ tel que le camion passe au plus une fois par $e_0$.
@@ -141,6 +140,7 @@ On démontrera que dans la partie \ref{Ze0 unitaire}, on trouve pour chaque $e_0
 \end{itemize}
 
 \subsection{Restriction du nombre de passages sur l'ensemble des arêtes}
+\label{restriction arête}
 
 \begin{prop}\label{Ze inf 3 - lineaire}
 Soit $G=(V,E)$ un graphe linéaire. On suppose que la capacité $C$ du camion est infine et que $p$ et $q$ sont des extrémités du grapghe. Alors il existe une solution réalisable optimale telle que : pour toute arête $e \in E$, le camion passe au plus trois fois sur $e$.
@@ -236,5 +236,15 @@ De plus, il est évident que :
 \item $\min_{w \in V, w' \in ]w,o]} \left(3 \sum_{ v \in E\left[ \left[w',w\right]_+ \right] }c_v + \Upsilon_{G(w,w',-)}\right)$ donne le coût de la meilleure solution retourné dans la partie \ref{Calcul mvt - Ze0 unitaire - indirect}.
 \end{itemize}
 Donc la formule donnée dans le théorème \ref{thm: optimalité algo infini} donne bien le coût de la meilleure solution retournée par l'algorithme.
+\\
 
 Il reste à montrer que l'algorithme renvoie bien une solution optimale.
+
+On a vu dans la partie \ref{e0 nul ou unitaire} qu'il suffisait de distinguer deux cas. Dans la partie \ref{Calcul mvt - Ze0 nul}, l'algorithme renvoie bien la meileure des solutions pour laquelle il existe une arête sur laquelle le camion ne passe pas en testant pour tous les $e_0 \in E$ possibles. ($n$ tests.)
+
+Lors de la démonstration du lemme \ref{Ze inf 3 - circulaire}, on a montré que si une solution optimale passait par toutes les arêtes, alors il existait une solution optimale carctérisée par deux sommets $w \in V$ et $w' in ]w,p]_+$ et pour laquelle le trajet du camion était décrit à laide de la partie \ref{Calcul mvt - Ze0 unitaire - direct} ou \ref{Calcul mvt - Ze0 unitaire - indirect} de l'algorithme. L'algorithme cherche donc cette solution parmi toutes les paires $(w,w') \in V\times ]w,p]_+$ possibles et sélectionne la meilleure. ($O(n^2)$ tests.)
+
+L'algorithme décrit en section \ref{Algorithme circulaire infini} renvoie donc une solution optimale au problème, ce qui conclue la démonstration.
+\\
+\\
+\textbf{Remarque.} Par construction des solutions dans l'algorithme de la section \ref{Algorithme circulaire infini}, on peut affirmer que la solution retournée passe au plus trois fois par chaque arête. En outre, selon la proposition \ref{parité des Ze}, tous les $z_e$ valent $0$ ou $2$ s'il existe une arête que le camion ne traverse pas ou tous les $z_e$ valent $1$ ou $3$ si le camion traverse toutes les arêtes.
