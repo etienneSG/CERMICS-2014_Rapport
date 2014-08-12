@@ -1,0 +1,25 @@
+\chapter{Capacité du camion unitaire}
+\label{Capacite unitaire}
+
+\section{Hypothèses et conjecture}
+\label{Capacité unitaire - hypothèse}
+
+La capacité du camion unitaire pourrait correspondre au cas d'autolib'. Ici, nous supposons que :
+\begin{itemize}
+\item la capacité est unitaire (ie. $C=1$).
+\item le point de départ et d'arrivée sont les mêmes (ie. $p=q$)
+\item toute station a soit un vélo en excès, soit un vélo en défaut (ie. pour tout $v \in V$, $(x_v,y_v)~=~(1,0)$ ou $(x_v,y_v)~=~(0,1)$).
+\end{itemize}
+
+\section{Conjecture et algorithme}
+
+Au vu des recherches et des exemples traité, nous pensons que le résultat suivant est vrai.
+
+\begin{conj} \label{conj: capacité unitaire - un passage}
+Sous les hypothèses de la section \ref{Capacité unitaire - hypothèse}, il existe un trajet optimal et une arête $e_0$ tels que le camion passe au plus une fois par $e_0$ au cours de ce trajet.
+\end{conj}
+
+En supposant la conjecture \ref{conj: capacité unitaire - un passage} vraie, on peut montrer qu'il existe un algorithme polynomial résolvant le SSBP sous les hypothèse précédente. C'est ce que nous allons montrer dans la partie \ref{Capicité unitaire preuve}.
+
+\section{}
+\label{Capicité unitaire preuve}

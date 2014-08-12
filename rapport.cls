@@ -85,6 +85,8 @@
 \newtheorem{thm}{Théorème}
 \newtheorem{lem}[thm]{Lemme}
 \newtheorem{prop}[thm]{Proposition}
+\newtheorem*{rmq}{Remarque}
+\newtheorem{conj}{Conjecture}
 
 %Raccourcis utile
 \newcommand\RR{\mathbb{R}}         %R de l'ensemble des réels

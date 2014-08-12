@@ -1,4 +1,5 @@
 \chapter{Capacité du camion infinie}
+\label{Capacité infinie}
 
 Dans tout ce chapitre, on considère un graphe circulaire $G = (V,E)$ à $n$ sommets et muni d'une orientation. On suppose en outre que $p=q$, c'est-à-dire que le point de départ et d'arrivé du camion sont identiques. Enfin, on considère un camion de capacité $C$ infinie c'est-à-dire de capacité supérieure à la somme totale des vélos présents sur le graphe.
 \\
@@ -245,6 +246,7 @@ On a vu dans la partie \ref{e0 nul ou unitaire} qu'il suffisait de distinguer de
 Lors de la démonstration du lemme \ref{Ze inf 3 - circulaire}, on a montré que si une solution optimale passait par toutes les arêtes, alors il existait une solution optimale carctérisée par deux sommets $w \in V$ et $w' in ]w,p]_+$ et pour laquelle le trajet du camion était décrit à laide de la partie \ref{Calcul mvt - Ze0 unitaire - direct} ou \ref{Calcul mvt - Ze0 unitaire - indirect} de l'algorithme. L'algorithme cherche donc cette solution parmi toutes les paires $(w,w') \in V\times ]w,p]_+$ possibles et sélectionne la meilleure. ($O(n^2)$ tests.)
 
 L'algorithme décrit en section \ref{Algorithme circulaire infini} renvoie donc une solution optimale au problème, ce qui conclue la démonstration.
-\\
-\\
-\textbf{Remarque.} Par construction des solutions dans l'algorithme de la section \ref{Algorithme circulaire infini}, on peut affirmer que la solution retournée passe au plus trois fois par chaque arête. En outre, selon la proposition \ref{parité des Ze}, tous les $z_e$ valent $0$ ou $2$ s'il existe une arête que le camion ne traverse pas ou tous les $z_e$ valent $1$ ou $3$ si le camion traverse toutes les arêtes.
+
+\begin{rmq}
+Par construction des solutions dans l'algorithme de la section \ref{Algorithme circulaire infini}, on peut affirmer que la solution retournée passe au plus trois fois par chaque arête. En outre, selon la proposition \ref{parité des Ze}, tous les $z_e$ valent $0$ ou $2$ s'il existe une arête que le camion ne traverse pas ou tous les $z_e$ valent $1$ ou $3$ si le camion traverse toutes les arêtes.
+\end{rmq}
