@@ -14,9 +14,6 @@
 \geometry{bindingoffset=1.5cm}
 \geometry{top=3.5cm, bottom=3cm, left=1.2cm , right=2.5cm}
 
-%Pour remplir de bullshit
-\usepackage{lipsum}
-
 %Pour pouvoir mettre des images
 \usepackage{graphicx}
 
@@ -82,11 +79,13 @@
 \newcommand\displayUB[2]{\underbrace{#1}_{\displaystyle #2}}
 
 %On définit l'envirronnement propre au théorème
+\theoremstyle{plain} % default (corps en italique)
 \newtheorem{thm}{Théorème}
 \newtheorem{lem}[thm]{Lemme}
 \newtheorem{prop}[thm]{Proposition}
-\newtheorem*{rmq}{Remarque}
+\theoremstyle{definition} % (corps en texte normal)
 \newtheorem{conj}{Conjecture}
+\newtheorem*{rmq}{Remarque}
 
 %Raccourcis utile
 \newcommand\RR{\mathbb{R}}         %R de l'ensemble des réels

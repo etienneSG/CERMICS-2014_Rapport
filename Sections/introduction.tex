@@ -35,6 +35,8 @@ Muni d'une telle orientation, pour $u,v \in V$, on définit $\left[ u,v \right]_
   \label{Notation intervalle graphe}
 \end{figure}
 
+Si le graphe est doté d'un coût $\bs{c} \in \RR^E_+$, pour $u,v \in V$, on note $\tau_{u,v}$ le chemin de coût minimum pour aller de $u$ à $v$. $c(\tau_{u,v})$ est donc le minimum entre la somme des coûts des arêtes reliant $u$ à $v$ dans le sens direct et la somme des coûts des arêtes reliant $u$ à $v$ dans le sens indirect.
+
 Pour $X,Y \subseteq V$, on notera $E[X:Y]$ l'ensemble des arêtes ayant un sommet dans $X$ et un sommet dans $Y$ et tel que leur deux sommets soient dans $X \cup Y$. Par soucis de concision, on notera $E[X] = E[X:Y]$.
 
 \subsection{Modèle}
@@ -47,7 +49,7 @@ On se donne un graphe $G=(V,E)$ et une capacité $C \ge 0$. Un \emph{état} $s$ 
 \item $\left| x_p-y_p \right| \le C$.
 \end{itemize}
 
-Un mouvement consiste à aller d'un état $s$ à un état adjacent $s'$. Si le graphe est doté par un coût $\bs{c} \in \RR^E_+$, le coût d'un mouvement entre deux états adjacents $s=(\bs{x},p)$ et $s'=(\bs{y},q)$ est simplement $c(pq)$. Le coût d'une séquence de mouvement est la somme des coût des mouvement de la séquence.
+Un mouvement consiste à aller d'un état $s$ à un état adjacent $s'$. Si le graphe est doté d'un coût $\bs{c} \in \RR^E_+$, le coût d'un mouvement entre deux états adjacents $s=(\bs{x},p)$ et $s'=(\bs{y},q)$ est simplement $c(pq)$. Le coût d'une séquence de mouvement est la somme des coût des mouvement de la séquence.
 \\
 
 Il est facile de voir que l'état $s=(\bs{x},p)$ code la position $p$ du camion et le nombre $x_v$ de vélos sur chaque stations $v$. Un mouvement correspond bien à un mouvement réel du camion pendant lequel il transorte $x_p-y_p$ vélos de la stations $p$ à la sation $q$.

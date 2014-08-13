@@ -1,7 +1,7 @@
 \chapter{Capacité du camion unitaire}
 \label{Capacite unitaire}
 
-\section{Hypothèses et conjecture}
+\section{Hypothèses}
 \label{Capacité unitaire - hypothèse}
 
 La capacité du camion unitaire pourrait correspondre au cas d'autolib'. Ici, nous supposons que :
@@ -10,8 +10,10 @@ La capacité du camion unitaire pourrait correspondre au cas d'autolib'. Ici, no
 \item le point de départ et d'arrivée sont les mêmes (ie. $p=q$)
 \item toute station a soit un vélo en excès, soit un vélo en défaut (ie. pour tout $v \in V$, $(x_v,y_v)~=~(1,0)$ ou $(x_v,y_v)~=~(0,1)$).
 \end{itemize}
+On note $2n$ le nombre de sommet du graphe. ($n$ sommets de la forme~$(1,0)$ et $n$ de la forme~$(0,1)$.)
 
 \section{Conjecture et algorithme}
+\label{capacité unitaire - conjecture et algorithme}
 
 Au vu des recherches et des exemples traité, nous pensons que le résultat suivant est vrai.
 
@@ -19,7 +21,68 @@ Au vu des recherches et des exemples traité, nous pensons que le résultat suiv
 Sous les hypothèses de la section \ref{Capacité unitaire - hypothèse}, il existe un trajet optimal et une arête $e_0$ tels que le camion passe au plus une fois par $e_0$ au cours de ce trajet.
 \end{conj}
 
-En supposant la conjecture \ref{conj: capacité unitaire - un passage} vraie, on peut montrer qu'il existe un algorithme polynomial résolvant le SSBP sous les hypothèse précédente. C'est ce que nous allons montrer dans la partie \ref{Capicité unitaire preuve}.
+\begin{thm} \label{thm: capacité unitaire - optimalité}
+Sous les hypothèses de la section~\ref{Capacité unitaire - hypothèse} et en supposant la conjecture~\ref{conj: capacité unitaire - un passage} vraie, l'algorithme suivant donne le trajet optimal du camion en temps polynomial.
+\end{thm}
+\begin{enumerate}
+\item \uline{Pour chaque $e_o \in E$,}
 
-\section{}
+  \uline{Pour chaque $u \in V$,}
+
+  \uline{Pour chaque $v \in V$ tel que $v$ ne soit pas de la même forme que $u$},
+  \begin{enumerate}
+  \item Construire le graphe linéaire $\bs{G(e_0,u,v)}$ obtenu :
+    \begin{itemize}
+    \item en supprimant l'arrête $e_0$ de $G$.
+    \item en prenant comme point de départ $u$.
+    \item en prenant comme point d'arrivée $v$.
+    \item Transformer $u$ de la façon suivante
+      \begin{itemize}
+        \item Si $u$ est de la forme $(0,1)$, mettre $u$ de la forme $(0,0)$.
+        \item Si $u$ est de la forme $(1,0)$, mettre $u$ de la forme $(1,1)$.
+      \end{itemize}
+    \item Transformer $v$ de la même façon.
+    \end{itemize}
+  \item Calculer le coût de la solution optimale $S$ à l'aide de l'algorithme dans le cas linéaire.
+  \item Si $\Upsilon_{G(e_0,u,v)} + c(\tau_{u,v}) < \mbox{Coût}(S_{min})$, remplacer les caractéristiques de $S_{min}$ par celles de $S$ (c'est-à-dire son coût, l'arête $e_0$ et les sommets de départ $u$ et d'arrivée $v$).
+  \end{enumerate}
+\item Pour $e_0$, $u$ et $v$ caractérisant la solution optimale,
+  \begin{enumerate}
+  \item Calculer l'ensemble de la solution (donc des mouvements) à l'aide de l'algorithme dans le cas linéaire dans le graphe $\bs{G(e_0,u,v)}$.
+  \item Ajouter le trajet $\tau_{u,v}$ de $u$ à $v$ en fin de solution.
+  \item \begin{enumerate}
+    \item Si $p$ était initialement en excès, choisir un instant du cycle de la solution où le camion arrive vide en $p$ et repart plein et dérouler les mouvements de la solution.
+    \item Si $p$ était initialement en défaut, choisir un instant du cycle de la solution où le camion arrive plein en $p$ et repart vide et dérouler les mouvements de la solution.
+    \end{enumerate}
+  \end{enumerate}
+\end{enumerate}
+
+
+\section{Preuve de l'optimalité de l'algorithme}
 \label{Capicité unitaire preuve}
+
+La recherche de la solution optimale dans le graphe circulaire $G=(V,E)$ revient à chercher le plus court circuit hamiltonien dans le graphe biparti complet $G'=(V,E')$ défini et pondéré comme suit. Pour $u,v \in V$ avec $u \ne v$,
+\begin{itemize}
+\item si $u$ et $v$ sont toutes deux en excès ou toutes deux en défaut, on n'ajoute pas l'arête $(u,v)$.
+\item sinon, on ajoute l'arête $(u,v)$ et on définit le coût $c_{(u,v)}$ de l'arête par  $c_{(u,v)}~=~c(\tau_{u,v})$.
+\end{itemize}
+Par conséquent, une solution optimale au SSBP dans $G$ ne dépend pas du point de départ du camion.
+
+On se donne une solution optimale $S$ au SSBP dans le graphe $G$ et on note $S'$ la solution associée dans $G'$.
+
+Lorsque l'arête $e_0$ est traversée, on regarde dans la solution $S'$ entre quel sommet était fait le mouvement. il suffit donc de prendre le sommet d'arrivée $u$ comme sommet de départ et le sommet de départ $v$ comme sommet d'arrivé et de résoudre dans le graphe linéaire $\bs{G(e_0,u,v)}$
+
+
+\section{Cas où la solution optimale est bornée par $2\sum_{e \in E}c_e$}
+
+\begin{prop}
+Sous les hypothèses de la section~\ref{Capacité unitaire - hypothèse}, si le coût $\Upsilon_G$ de la solution optimale est strictement majoré par $2\sum_{e \in E}c_e$, alors l'algorithme de la section~\ref{capacité unitaire - conjecture et algorithme} donne la solution optimale et son coût en temps polynomial.
+\end{prop}
+
+\begin{proof}
+Soit $S$ une solution optimale. Par l'absurde, si $S$ passe au moins deux fois par chaque arête, alors $\Upsilon_G~\ge~2\sum_{e \in E}c_e$, ce qui est contradictoire. Donc il existe une arête $e_0$ telle que le camion passe au plus une fois par $e_0$ au cours de ce trajet. Selon le théorème~\ref{thm: capacité unitaire - optimalité}, l'algorithme de la section~\ref{capacité unitaire - conjecture et algorithme} donne la solution optimale et son coût en temps polynomial.
+\end{proof}
+
+\begin{rmq}
+La condition $\Upsilon_G~<~2\sum_{e \in E}c_e$ est une condition très forte. En effet, dans le pire des cas où les $n$ sommets $(1,0)$ suivent les $n$ sommets $(0,1)$, le coût $\Upsilon_G$ de la solution optimale est de l'ordre de $n^2\min_{e \in E}c_e$ alors que la condition précédente est linéaire en $n$.
+\end{rmq}
