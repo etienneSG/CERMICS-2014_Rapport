@@ -88,12 +88,14 @@
 \newtheorem*{rmq}{Remarque}
 
 %Raccourcis utile
-\newcommand\RR{\mathbb{R}}         %R de l'ensemble des réels
-\newcommand\ZZ{\mathbb{Z}}         %Z de l'ensemble des relatifs
-\newcommand\NN{\mathbb{N}}         %N de l'ensemble des naturels
-\newcommand\Indic{\mathds{1}}      %Fonction indicatrice d'un ensemble
-\newcommand\cE{\mathcal{E}}        %E caligraphié
-\newcommand\bs[1]{\boldsymbol{#1}} %Symbole en gras dans une formule mathématique
+\newcommand\RR{\mathbb{R}}           %R de l'ensemble des réels
+\newcommand\ZZ{\mathbb{Z}}           %Z de l'ensemble des relatifs
+\newcommand\NN{\mathbb{N}}           %N de l'ensemble des naturels
+\newcommand\Indic{\mathds{1}}        %Fonction indicatrice d'un ensemble
+\newcommand\cE{\mathcal{E}}          %E caligraphié
+\newcommand\bs[1]{\boldsymbol{#1}}   %Symbole en gras dans une formule mathématique
+\newcommand\plus{\textcircled{$+$} }  %Symbole + entouré
+\newcommand\moins{\textcircled{$-$} } %Symbole - entouré
 
 %On rédéfinit les chapitres
 \usepackage{titlesec}
