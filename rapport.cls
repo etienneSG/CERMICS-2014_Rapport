@@ -27,7 +27,7 @@
 \normalem
 
 %Pour mettre des liens dans le fichier
-\usepackage[xetex,colorlinks=true,pdfmenubar=false,pdfpagemode=UseNone,urlcolor=black,linkcolor=black,citecolor=black,filecolor=black,pdfstartview=FitH]{hyperref}
+\usepackage[colorlinks=true,pdfmenubar=false,pdfpagemode=UseNone,urlcolor=black,linkcolor=black,citecolor=black,filecolor=black,pdfstartview=FitH]{hyperref}
 
 %Pour plus de maths et de chimie
 \usepackage{amsmath,amsfonts,amsthm,dsfont}
