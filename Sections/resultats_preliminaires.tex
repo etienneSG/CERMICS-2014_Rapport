@@ -11,10 +11,10 @@ On se donne un graphe $G=(V,E)$ circulaire à $n$ sommets et un coût $\bs{c} \i
 
 En effet, supposons qu'il existe $e' \in E$ tel que $c_{e'} \ge \sum_{e \in E \backslash \{e'\}} c_e$.
 
-On se donne une solution optimale $(z_e)_{e \in E}$. Le coût d'une telle solution s'écrit $\Gamma_{G}~=~\sum_{e \in E}~c_ez_e$. On construit alors la séquence de mouvement $(z'_e)_{e \in E}$ par le procédé suivant : chaque passage par l'arête $e'$ est remplacé par un passage sur les autres arêtes avec le même nombre de vélos. Autrement dit, ``on fait le tour dans l'autre sens''. On note $\Gamma'$ le coût d'une telle séquence. On a alors :
+On se donne une solution optimale $(z_e)_{e \in E}$. Le coût d'une telle solution s'écrit $\Upsilon_{G}~=~\sum_{e \in E}~c_ez_e$. On construit alors la séquence de mouvement $(z'_e)_{e \in E}$ par le procédé suivant : chaque passage par l'arête $e'$ est remplacé par un passage sur les autres arêtes avec le même nombre de vélos. Autrement dit, ``on fait le tour dans l'autre sens''. On note $\Gamma'$ le coût d'une telle séquence. On a alors :
 \begin{align*}
   \Gamma' &= \sum_{e \in E \backslash \{e'\}} c_e (z_e + z_{e'}) = \sum_{e \in E \backslash \{e'\}} c_ez_e + \left(\sum_{e \in E \backslash \{e'\}} c_{e}\right)z_{e'} \\
-     &\le \sum_{e \in E \backslash \{e'\}} c_ez_e + c_{e'}z_{e'} = \Gamma_{G}
+     &\le \sum_{e \in E \backslash \{e'\}} c_ez_e + c_{e'}z_{e'} = \Upsilon_{G}
 \end{align*}
 
 Par conséquent, il existe une solution au moins aussi bonne ne passant pas par $e'$. Pour obtenir la solution optimale, il suffit alors de résoudre le cas du graphe linéaire sur le graphe $G'$ obtenu en supprimant l'arête $e'$ du graphe $G$.
@@ -22,14 +22,14 @@ Par conséquent, il existe une solution au moins aussi bonne ne passant pas par 
 \section{Borne inférieure de la solution optimale (valable pour un graphe quelconque)}
 \label{Borne inf générale}
 
-Nous nous contentons ici de récrire la borne inférieure trouvée par les auteurs de l'article \cite{Benchimol2011}.
+Nous nous contentons ici de redonner la borne inférieure trouvée par les auteurs de l'article \cite{Benchimol2011}.
 \\
 
-Une borne inféieure du SSBP est la solution optimale du programme linéaire en nombres entiers dont les variables ``comptent'' le nombre de fois où le camion passe par chaque arête. Les contraintes sont les suivantes :
+Une borne inférieure du SSBP est la solution optimale du programme mathématique en nombres entiers dont les variables ``comptent'' le nombre de fois où le camion passe par chaque arête. Les contraintes sont les suivantes :
 \begin{enumerate}[label=(\roman*)]
 \item les variables sont des entiers naturels.
 \item la condition d'Euler : sauf peut-être en $p$ et en $q$, le camion entre et sort de tout sommet un nombre paire de fois.
-\item ``subtour elimination'' : si le camion est en $p \in U \subseteq V $ et qu'il existe des stations non-équilibrée dans $\overline{U}$, alors le camion doit nécessairement traverser $\delta(U)$ au moins une fois (voire plus, suivant la position de $q$). Nous utiliserons la notation suivante pour écrire cette contrainte :
+\item ``subtour elimination'' : si le camion est en $p \in U \subseteq V $ et qu'il existe des stations non-équilibrées dans $\overline{U}$, alors le camion doit nécessairement traverser $\delta(U)$ au moins une fois (voire plus, suivant la position de $q$). Nous utiliserons la notation suivante pour écrire cette contrainte :
 \[
 \mu(p,q,U,\bs{x},\bs{y}) = \left\{
 \begin{array}{ll}
@@ -74,14 +74,14 @@ Cette borne inférieure est donc solution du programme mathématique en nombres 
   \caption{Exemple de graphe circulaire à 5 sommets où la borne inférieure n'est pas atteinte}
 \end{figure}
 
-La solution du programme linéaire en nombre entier \eqref{PLNE borne inf} est $z_e = 1$, pour tout $e \in E$. C'est-à-dire qu'il suffirait de faire un tour complet du graphe sans revenir sur ses pas pour l'équilibrer. Or on constate qu'un tel parcours ne peut pas équilibrer le graphe.
+La solution du programme mathématique en nombre entier \eqref{PLNE borne inf} est $z_e = 1$, pour tout $e \in E$. C'est-à-dire qu'il suffirait de faire un tour complet du graphe sans revenir sur ses pas pour l'équilibrer. Or on constate qu'un tel parcours ne peut pas équilibrer le graphe.
 
 Si dans certains cas particuliers du graphe circulaire, on peut utiliser l'égalité avec la borne inférieure solution du programme mathématique \eqref{PLNE borne inf}, on sait que dans le cas général cette méthode n'aboutira pas. En effet, on vient de montrer qu'il existe des cas où cette borne inférieure n'est pas atteinte.
 
 \section{Changement de variables}
 \label{Changement variables}
 
-La description de la borne inférieure dans la section \ref{Borne inf générale} donne un minorant de $z(\delta(U))$ pour toute coupe $\delta(U)$ dans le graphe. Dans le cas de l'arbre décrit dans l'article \cite{Benchimol2011}, on avait donc un minorant de $z_e$ pour tout $e \in E$. Comme $c_e$ est positif pour tout $e\in E$, il suffisait de montrer que le minimum de $z_e$ était atteint pour tout $e \in E$ pour montrer que le coût $\sum_{e _in E}c_ez_e$ était minimal.
+La description de la borne inférieure dans la section \ref{Borne inf générale} donne un minorant de $z(\delta(U))$ pour toute coupe $\delta(U)$ dans le graphe. Dans le cas de l'arbre décrit dans l'article \cite{Benchimol2011}, on avait donc un minorant de $z_e$ pour tout $e \in E$. Comme $c_e$ est positif pour tout $e\in E$, il suffisait de montrer que le minimum de $z_e$ était atteint pour tout $e \in E$ pour montrer que le coût $\sum_{e \in E}c_ez_e$ était minimal.
 
 \begin{prop}\label{Parité coupe}
 Soit $G=(V,E)$ un graphe dont tous les sommets sont de degrès paire. Alors toute coupe de G est de cardinal paire.
@@ -102,7 +102,7 @@ Soit $G=(V,E)$ un graphe circulaire à $n$ sommets ($n \ge 3$). On considère le
 \begin{gather}\label{Système linéaire complet}
   \sum_{e \in \delta(U)}z_e = z(\delta(U)) \quad \mbox{pour tout } U \subseteq V \mbox{ tel que } U \ne \emptyset
 \end{gather}
-On suppose que le système \ref{Système linéaire complet} possède au moins une solution.
+On suppose que le système \eqref{Système linéaire complet} possède au moins une solution.
 
 Alors cette solution est unique.
 \end{lem}
@@ -153,8 +153,8 @@ On note $M_n$ la matrice du sytème \eqref{Système linéaire extrait}. En déve
   \end{array} \right)
   + 1 \times \mbox{det } \left(
   \begin{array}{cc|cccc}
-    1 & 0                                       & \multicolumn{4}{c}{\multirow{2}{*}{ (0) }} \\
-    1 & 1                                       & \multicolumn{4}{c}{}                       \\
+    1 & 1                                       & \multicolumn{4}{c}{\multirow{2}{*}{ (0) }} \\
+    0 & 1                                       & \multicolumn{4}{c}{}                       \\
     \hline
     \multicolumn{2}{c|}{\multirow{5}{*}{ (0) }} & 1   &        & \multicolumn{2}{c}{\multirow{2}{*}{ (0) }} \\
     \multicolumn{2}{c|}{}                       & 1   & \ddots & \multicolumn{2}{c}{}                       \\
@@ -176,7 +176,7 @@ On peut également donner une forme explicite de la solution :
   \right.
 \end{equation}
 
-On obtient ainsi une nouvelle base $\bs{\zeta} = (\zeta_i)_{i \in \{1,..,n\}}$. Nous verrons tout l'intérêt d'un tel changement de variable dans le cas du triangle (section \ref{Cas du Triangle}) et pour montrer que la solution du programme mathématique \eqref{PLNE borne inf} relâché est entière (section \ref{Section solution entiere}).
+On obtient ainsi une nouvelle base $\bs{\zeta} = (\zeta_i)_{i \in \{1,..,n\}}$. Nous verrons tout l'intérêt d'un tel changement de variables dans le cas du triangle (section \ref{Cas du Triangle}) et pour montrer que la solution du programme mathématique \eqref{PLNE borne inf} relâché est entière (section \ref{Section solution entiere}).
 
 
 \section{Solution entière}
