@@ -26,7 +26,7 @@ Règles permettant de trouver le premier mouvement d'une solution optimale
     Prendre $x(p)-y(p)$ vélos.
 &&&& \underline{Les deux autres stations sont en défaut.}
 
-     Déposer les vélos pris sur une station différentes de $q$.
+     Déposer les vélos pris sur une station différente de $q$.
 &&&& \underline{Une seule autre station est en défaut.}
 
      On note $r$ la troisième station en excès ou équilibrée\\
@@ -123,7 +123,7 @@ Il suffit donc de montrer l'égalité suivante pour tout $v \in V$
 Nous allons effectuer cette démonstration par récurrence sur les mouvements du camion.
 \\
 
-Dans chacun des différents cas, l'égalité \eqref{Récurrence triangle} est évidente dans le cas où $v \ne p$ et où $v \ne p'$.
+Dans chacun des différents cas, l'égalité \eqref{Récurrence triangle} est évidente si $v \ne p$ et $v \ne p'$.
 
 \subsection*{Cas 1.1 et 1.2}
 
@@ -133,7 +133,7 @@ L'égalité \eqref{Récurrence triangle} est évidente dans ce cas.
 
 \begin{minipage}{0.5\linewidth}
 \begin{itemize}
-\item $p$ équilibré ou en défaut
+\item $p$ équilibrée ou en défaut
 \item $p'$ en excès
 \item on ne transporte pas de vélos
 \end{itemize}
@@ -378,9 +378,9 @@ On note $B = 2 \left\lceil \frac{\displaystyle x(U_{p'})-y(U_{p'})}{\displaystyl
     \\ \hline
     p' = q
     & \multirow{2}{*}{$= B \ge 2$}
+    & -1
     & 1
-    & 1
-    & B + 1
+    & B - 1
     \\ \cline{1-1}\cline{3-5}
     p' \ne q
     &
@@ -400,14 +400,14 @@ On note $B = 2 \left\lceil \frac{\displaystyle x(U_{p'})-y(U_{p'})}{\displaystyl
     & \zeta_{p'}(p',q,\bs{x'},\bs{y})
     \\ \hline
     p' = q
-    & \multirow{2}{*}{$= B \ge 2$}
+    & \multirow{2}{*}{$= B-2 \ge 2$}
     & 0
     & 2
-    & B
+    & B-2
     \\ \cline{1-1}\cline{3-5}
     p' \ne q
     &
-    & -1
+    & 1
     & 1
     & B - 1
     \\ \hline
@@ -574,18 +574,18 @@ Donc $\zeta_{p'}(p,q,\bs{x},\bs{y}) = 1 + \zeta_{p'}(p',q,\bs{x'},\bs{y})$.
 Donc $\zeta_p(p,q,\bs{x},\bs{y}) = 1 + \zeta_p(p',q,\bs{x'},\bs{y})$.
 \\
 
-On note $\gamma \in \NN \cup \{-1\}$ l'entier tel que $x(r)-y(r)=\gamma. C + \cE$. Alors :
+On note $\gamma \in \NN \cup \{-1\}$ l'entier tel que $x(r)-y(r)=\gamma C + \cE$. Alors :
 \[
 2 \left\lceil \frac{x(U_{p'})-y(U_{p'})}{C} \right\rceil
 = 2 \left\lceil \frac{x(p)-y(p)+x(r)-y(r)}{C} \right\rceil
-= 2 \left\lceil \frac{x(p)-y(p)+\gamma. C + \cE}{C} \right\rceil
+= 2 \left\lceil \frac{x(p)-y(p)+\gamma C + \cE}{C} \right\rceil
 = 2\gamma + 4
 \]
 \[
 2 \left\lceil \frac{x'(U_{p'})-y(U_{p'})}{C} \right\rceil
 = 2 \left\lceil \frac{x'(p)-y(p)+x'(r)-y(r)}{C} \right\rceil
 = 2 \left\lceil \frac{x(r)-y(r)}{C} \right\rceil
-= 2 \left\lceil \frac{\gamma. C + \cE}{C} \right\rceil
+= 2 \left\lceil \frac{\gamma C + \cE}{C} \right\rceil
 = 2\gamma + 2
 \]
 De plus, $\gamma = -1$ si et seulement si $r$ est équilibrée.
@@ -729,20 +729,20 @@ Donc $\zeta_{p'}(p,q,\bs{x},\bs{y}) = 1 + \zeta_{p'}(p',q,\bs{x'},\bs{y})$.
 Donc $\zeta_p(p,q,\bs{x},\bs{y}) = 1 + \zeta_p(p',q,\bs{x'},\bs{y})$.
 \\
 
-On note $\gamma \in \NN \cup \{-1\}$ l'entier tel que $x(p')-y(p') = x(r)-y(r) = \gamma. C + \cE$. Alors :
+On note $\gamma \in \NN \cup \{-1\}$ l'entier tel que $x(p')-y(p') = x(r)-y(r) = \gamma C + \cE$. Alors :
 \[
 2 \left\lceil \frac{x(U_{p'})-y(U_{p'})}{C} \right\rceil
 = 2 \left\lceil \frac{x(p')-y(p')}{C} \right\rceil
-= 2 \left\lceil \frac{\gamma. C + \cE}{C} \right\rceil
+= 2 \left\lceil \frac{\gamma C + \cE}{C} \right\rceil
 = 2\gamma + 2
 \]
 \[
 2 \left\lceil \frac{x'(U_{p'})-y(U_{p'})}{C} \right\rceil
 = 2 \left\lceil \frac{x'(p')-y(p')}{C} \right\rceil
-= 2 \left\lceil \frac{x(p)-y(p)+\gamma. C + \cE}{C} \right\rceil
+= 2 \left\lceil \frac{x(p)-y(p)+\gamma C + \cE}{C} \right\rceil
 = 2\gamma + 2
 \]
-De plus, si $\gamma = -1$, alors $p'$ est équilibré ou en défaut, ce qui est faux. Donc $\gamma \ge 0$
+De plus, si $\gamma = -1$, alors $p'$ est équilibrée ou en défaut, ce qui est faux. Donc $\gamma \ge 0$
 
 \begin{gather*}
   \begin{array}{c|c|c|c||c|}
