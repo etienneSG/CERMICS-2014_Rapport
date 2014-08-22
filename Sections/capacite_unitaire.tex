@@ -1,16 +1,16 @@
-\chapter{Capacité du camion unitaire}
+\chapter{Capacité de transport unitaire}
 \label{Capacite unitaire}
 
 \section{Hypothèses}
 \label{Capacité unitaire - hypothèse}
 
-La capacité du camion unitaire pourrait correspondre au cas d'autolib'. Ici, nous supposons que :
+La capacité de transport unitaire pourrait correspondre au cas d'autolib'. Ici, nous supposons que :
 \begin{itemize}
 \item la capacité est unitaire (ie. $C=1$).
 \item le point de départ et d'arrivée sont les mêmes (ie. $p=q$)
 \item toute station a soit un vélo en excès, soit un vélo en défaut (ie. pour tout $v \in V$, $(x_v,y_v)~=~(1,0)$ ou $(x_v,y_v)~=~(0,1)$).
 \end{itemize}
-On note $2n$ le nombre de sommet du graphe. ($n$ sommets de la forme~$(1,0)$ et $n$ de la forme~$(0,1)$.) Afin de simplifier la rédaction, nous nommerons :
+On note $2n$ le nombre de sommets du graphe. ($n$ sommets de la forme~$(1,0)$ et $n$ de la forme~$(0,1)$.) Afin de simplifier la rédaction, nous nommerons :
 \begin{itemize}
 \item station \plus une station de la forme $(1,0)$.
 \item station \moins une station de la forme $(0,1)$.
@@ -19,7 +19,7 @@ On note $2n$ le nombre de sommet du graphe. ($n$ sommets de la forme~$(1,0)$ et 
 \section{Conjecture et algorithme}
 \label{capacité unitaire - conjecture et algorithme}
 
-Au vu des recherches et des exemples traité, nous pensons que le résultat suivant est vrai.
+Au vu des recherches et des exemples traités, nous pensons que le résultat suivant est vrai.
 
 \begin{conj} \label{conj: capacité unitaire - un passage}
 Sous les hypothèses de la section \ref{Capacité unitaire - hypothèse}, il existe un trajet optimal et une arête $e_0$ tels que le camion passe au plus une fois par $e_0$ au cours de ce trajet.
@@ -28,11 +28,12 @@ Sous les hypothèses de la section \ref{Capacité unitaire - hypothèse}, il exi
 \begin{thm} \label{thm: capacité unitaire - optimalité}
 Sous les hypothèses de la section~\ref{Capacité unitaire - hypothèse} et en supposant la conjecture~\ref{conj: capacité unitaire - un passage} vraie, l'algorithme suivant donne le trajet optimal du camion en temps polynomial.
 \end{thm}
+On note $S_{min}$ la meilleure solution réalisable obtenue et on l'initialise avec une solution faisant $2n$ fois le tour du graphe (donc de coût $2n\sum_{e \in E}c_e$).
 \begin{enumerate}
 \item \uline{Pour chaque $e_o \in E$,}
   \begin{enumerate}
   \item Construire le graphe linéaire $\bs{G(e_0)}$ obtenu en supprimant l'arrête $e_0$ de $G$.
-  \item Calculer le coût $\Upsilon_{G(e_0)}$ de la solution optimale à l'aide de l'algorithme dans le cas linéaire.
+  \item Calculer le coût $\Upsilon_{G(e_0)}$ de la solution optimale $S$ à l'aide de l'algorithme dans le cas linéaire.
   \item Si $\Upsilon_{G(e_0)} < \mbox{Coût}(S_{min})$, remplacer les caractéristiques de $S_{min}$ par celles de $S$ (c'est-à-dire son coût et l'arête $e_0$).
   \end{enumerate}
 \item \uline{Pour chaque $e_o \in E$,}
@@ -44,12 +45,12 @@ Sous les hypothèses de la section~\ref{Capacité unitaire - hypothèse} et en s
   \item Construire le graphe linéaire $\bs{G(e_0,u,v)}$ obtenu :
     \begin{itemize}
     \item en supprimant l'arrête $e_0$ de $G$.
-    \item en prenant comme point de départ $u$.
-    \item en prenant comme point d'arrivée $v$.
+    \item en prenant comme point de départ $v$.
+    \item en prenant comme point d'arrivée $u$.
     \item Si $u$ est une station \plus et $v$ une station \moins, transformer $u$ en une station de la forme $(0,0)$ et $v$ en une station de la forme $(1,1)$.
     \end{itemize}
-  \item Calculer le coût $\Upsilon_{G(e_0)}$ de la solution optimale à l'aide de l'algorithme dans le cas linéaire.
-  \item Si $\Upsilon_{G(e_0,u,v)} + c(\tau_{u,v}) < \mbox{Coût}(S_{min})$, remplacer les caractéristiques de $S_{min}$ par celles de $S$ (c'est-à-dire son coût, l'arête $e_0$ et les sommets de départ $u$ et d'arrivée $v$).
+  \item Calculer le coût $\Upsilon_{G(e_0,u,v)}$ de la solution optimale à l'aide de l'algorithme dans le cas linéaire.
+  \item Si $\Upsilon_{G(e_0,u,v)} + c(\tau_{u,v}) < \mbox{Coût}(S_{min})$, remplacer les caractéristiques de $S_{min}$ par celles de $S$ (c'est-à-dire son coût, l'arête $e_0$ et les sommets de départ $v$ et d'arrivée $u$).
   \end{enumerate}
 \item \begin{enumerate}
 \item Si la solution optimale est caractérisée par $e_0$, calculer chaque mouvement successif dans $\bs{G(e_0)}$ à l'aide de l'algorithme dans le cas linéaire.
@@ -74,7 +75,7 @@ La recherche de la solution optimale dans le graphe circulaire $G=(V,E)$ revient
 \item si $u$ et $v$ sont toutes deux en excès ou toutes deux en défaut, on n'ajoute pas l'arête $(u,v)$.
 \item sinon, on ajoute l'arête $(u,v)$ et on définit le coût $c_{(u,v)}$ de l'arête par $c_{(u,v)}~=~c(\tau_{u,v})$.
 \end{itemize}
-En effet, chaque vélo présent sur une station \plus ira équilibrer une station \moins. Pour une solution du SSBP, en marquant l'origine des vélos et en appliquant la règle d'une pile de vélos (ie. le dernier vélo déposé sur une station est le premier ramassé), on obtient le couplage annoncé et la solution dans le graphe $G'$. Réciproquement, une solution dans le graphe $G'$ donne aisément une solution dans le graphe $G$.
+En effet, chaque vélo présent sur une station \plus ira équilibrer une station \moins. Pour une solution du SSBP, en marquant l'origine des vélos et en appliquant la règle d'une pile de vélos (ie. le dernier vélo déposé sur une station est le premier ramassé), on obtient un couplage entre les stations \plus et \moins et la solution dans le graphe $G'$. Réciproquement, une solution dans le graphe $G'$ donne aisément une solution dans le graphe $G$.
 
 Comme la recherche du plus court circuit hamiltonien ne dépend pas du point de départ, on en déduit que la recherche d'une solution optimale au SSBP dans $G$ ne dépend pas du point de départ du camion.
 
@@ -89,7 +90,7 @@ Dans ce cas, la solution optimale est directement donnée par l'algorithme dans 
 \item Si l'arête $e_0$ est traversée avec un vélo, ce vélo venait d'une station \plus $u$ et équilibrera une station \moins $v$.
 \item Si l'arête $e_0$ est traversée sans vélo, le camion se contentait de passer d'une station \moins $u$ vers une station \plus $v$.
 \end{itemize}
-On suppose connus ces deux stations $u$ et $v$ et le mouvement du camion. Comme le camion ne repasse plus par $e_0$, il suffit d'équilibrer le graphe $\bs{G(e_0,u,v)}$. On sait que l'algorithme dans le cas linéaire donne une solution optimale $S(e_0,u,v)$. On en déduit donc une solution $S$ équilibrant le graphe $G$ en ajoutant à $S(e_0,u,v)$ le mouvement de $u$ à $v$.
+On suppose connus ces deux stations $u$ et $v$ et le mouvement du camion. Comme le camion ne repasse plus par $e_0$, il suffit d'équilibrer le graphe $\bs{G(e_0,u,v)}$. On sait que l'algorithme dans le cas linéaire donne une solution optimale $S(e_0,u,v)$. On en déduit donc une solution $S$ équilibrant le graphe $G$ en ajoutant à $S(e_0,u,v)$ le mouvement initial de $u$ à $v$.
 \\
 
 On a donc montré que l'on peut trouver en temps polynomial ($O(n^4)$) le coût de la solution optimale ainsi que ces éléments caractéristiques ($e_0$ si l'on ne passe jamais par $e_0$ ou $e_0$, $u$ et $v$ si l'on passe exactement une fois par $e_0$). Il reste à montrer que l'on peut calculer les mouvements en temps polynomial.
